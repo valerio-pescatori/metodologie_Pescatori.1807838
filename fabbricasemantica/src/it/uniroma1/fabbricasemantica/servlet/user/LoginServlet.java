@@ -13,27 +13,38 @@ import javax.servlet.http.HttpSession;
 import it.uniroma1.fabbricasemantica.db.DBHandler;
 import it.uniroma1.fabbricasemantica.servlet.BaseServlet;
 
-
-@WebServlet(name="LoginServlet", urlPatterns="/login.jsp")
-public class LoginServlet extends BaseServlet {
+@WebServlet(name = "LoginServlet", urlPatterns = "/login.jsp")
+public class LoginServlet extends BaseServlet
+{
 	private static final long serialVersionUID = 8484501789787L;
-	private String page;
-	
+
 	@Override
-	protected void doSomething(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email = "'"+request.getParameter("email")+"'";
-		String password = "'"+request.getParameter("password")+"'";
-		Map<String, ArrayList<String>> qMap = DBHandler.selectQuery("user", "email", "password");
-		int emailIndex = qMap.get("email").indexOf(email);
-		int passwordIndex = qMap.get("password").indexOf(password);
-		if(emailIndex == passwordIndex && emailIndex != -1)
-		{
-			//loggo l'utente e lo redirecto a home.html
-			HttpSession session = request.getSession();
-			session.setAttribute("email", email);
+	protected void doSomething(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException
+	{
+		/*
+		 * $.get(authenticationService, (Object result, String a, JQueryXHR ctx) -> {
+		 * isLoggedIn = Boolean.parseBoolean((String)result); return null; });
+		 */
+		
+		HttpSession session = request.getSession();
+		if (session.getAttribute("username") != null)
 			page = "home.html";
+		else
+		{
+			String email = "'" + request.getParameter("email") + "'";
+			String password = "'" + request.getParameter("password") + "'";
+			Map<String, ArrayList<String>> qMap = DBHandler.selectQuery("user", "email", "password");
+			int emailIndex = qMap.get("email").indexOf(email);
+			int passwordIndex = qMap.get("password").indexOf(password);
+			if (emailIndex == passwordIndex && emailIndex != -1)
+			{
+				// loggo l'utente e lo redirecto a home.html
+				session.setAttribute("username", email);
+				page = "home.html";
+			} else
+				page = "login.html?error";
 		}
-		else page = "login.html?error";
 		response.sendRedirect(page);
 	}
 

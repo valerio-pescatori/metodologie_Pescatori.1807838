@@ -16,7 +16,7 @@ import org.sqlite.JDBC;
 
 public class DBHandler
 {
-	private static final String URL = "jdbc:sqlite:../eclipse-workspace/fabbricasemantica/fabbricasemantica.db";
+	private static final String URL = "jdbc:sqlite:/fabbricasemantica.db";
 
 	public static Connection getConnection()
 	{

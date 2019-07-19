@@ -3,7 +3,7 @@ var quickstart;
 (function (quickstart) {
     class Signup extends quickstart.LoginBasePage {
         constructor() {
-            super(Signup.title, Signup.formAction, Signup.btnLink);
+            super(Signup.TITLE, Signup.FORM_ACTION, Signup.BTN_LINK);
             let repeatLabel = quickstart.PageWithForm.createElement(quickstart.PageWithForm.HTMLTypes.LABEL, "Reinserire la password:");
             let passRepeat = quickstart.PageWithForm.createElement(quickstart.PageWithForm.HTMLTypes.TEXTINPUT, "form-control", "password", "Reinserire la password qui...", "passRepeat");
             let langs = quickstart.PageWithForm.createElement(quickstart.PageWithForm.HTMLTypes.LABEL, "Lingue parlate come madrelingua:");
@@ -38,9 +38,9 @@ var quickstart;
             let page = new Signup();
         }
     }
-    Signup.title = "Sign Up";
-    Signup.formAction = "signup.jsp";
-    Signup.btnLink = "login.html";
+    Signup.TITLE = "Sign Up";
+    Signup.FORM_ACTION = "signup.jsp";
+    Signup.BTN_LINK = "login.html";
     quickstart.Signup = Signup;
     Signup["__class"] = "quickstart.Signup";
 })(quickstart || (quickstart = {}));

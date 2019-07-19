@@ -1,11 +1,17 @@
 package it.uniroma1.fabbricasemantica.data;
 
 public enum StandardTask implements Task {
-	TRANSLATION_ANNOTATION,
-	WORD_ANNOTATION,
-	DEFINITION_ANNOTATION,
-	SENSE_ANNOTATION,
-	TRANSLATION_VALIDATION,
-	SENSE_VALIDATION,
-
+	TRANSLATION_ANNOTATION("translationAnnotation.html"),
+	WORD_ANNOTATION("wordAnnotation.html"),
+	DEFINITION_ANNOTATION("definitionAnnotation.html"),
+	SENSE_ANNOTATION("senseAnnotation.html"),
+	TRANSLATION_VALIDATION("translationValidation.html"),
+	SENSE_VALIDATION("senseValidation.html"),
+	MY_ANNOTATOIN("myAnnotation.html");
+	
+	private String url;
+	
+	StandardTask(String url) { this.url = url; }
+	
+	public String getUrl() { return url; }
 }

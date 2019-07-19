@@ -10,13 +10,13 @@ import java.util.Arrays;
 import def.dom.HTMLElement;
 
 public class Signup extends LoginBasePage{
-	private static final String title = "Sign Up";
-	private static final String formAction = "signup.jsp";
-	private static final String btnLink = "login.html";
+	private static final String TITLE = "Sign Up";
+	private static final String FORM_ACTION = "signup.jsp";
+	private static final String BTN_LINK = "login.html";
 
 
 	private Signup() {
-		super(title, formAction, btnLink);
+		super(TITLE, FORM_ACTION, BTN_LINK);
 		
 		HTMLElement repeatLabel = createElement(HTMLTypes.LABEL, "Reinserire la password:");
 		HTMLElement passRepeat = createElement(HTMLTypes.TEXTINPUT, "form-control", "password", "Reinserire la password qui...", "passRepeat");

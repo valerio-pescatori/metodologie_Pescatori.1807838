@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 public abstract class BaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 6784574842574L;
-       
+    
+	protected String page;
+	public final static String authenticationService = "/isLoggedIn.jsp";
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doSomething(request, response);
 	}
