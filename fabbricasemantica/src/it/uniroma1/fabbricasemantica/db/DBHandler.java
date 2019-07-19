@@ -16,7 +16,7 @@ import org.sqlite.JDBC;
 
 public class DBHandler
 {
-	private static final String URL = "jdbc:sqlite:/fabbricasemantica.db";
+	private static final String URL = "jdbc:sqlite:fabbricasemantica.db";
 
 	public static Connection getConnection()
 	{
@@ -31,7 +31,7 @@ public class DBHandler
 		}
 		return connection;
 	}
-
+	
 	// insert into x values (a,b,c)
 	public static void insertQuery(String table, String fields, Object... values)
 	{

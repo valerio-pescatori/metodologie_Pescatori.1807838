@@ -24,9 +24,9 @@ public class SignupServlet extends BaseServlet
 			throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
-		if (session.getAttribute("username") != null ) page = "home.html";
+		/*if (session.getAttribute("username") != null ) page = "home.html";
 		else
-		{
+		{*/
 		
 			Map<String, String[]> pMap = request.getParameterMap();
 			// se l'email c'è già o le password non corrispondono -> redirect a signup
@@ -46,7 +46,7 @@ public class SignupServlet extends BaseServlet
 					page = "home.html";
 				}
 			} 
-		}
+		//}
 		response.sendRedirect(page);
 	}
 }
