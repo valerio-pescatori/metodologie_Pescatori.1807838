@@ -9,11 +9,23 @@ var quickstart;
             let startImg = document.createElement("img");
             startImg.className = "float-right";
             startImg.src = "start.svg";
+            startImg.onerror = ((startImg) => {
+                return (x) => {
+                    startImg.src = "start.png";
+                    return null;
+                };
+            })(startImg);
             let logout = document.createElement("a");
             logout.href = "/fabbricasemantica/logout.jsp";
             let logoutImg = document.createElement("img");
             logoutImg.className = "float-left";
             logoutImg.src = "logout.svg";
+            logoutImg.onerror = ((logoutImg) => {
+                return (x) => {
+                    logoutImg.src = "start.png";
+                    return null;
+                };
+            })(logoutImg);
             $(start).append(startImg);
             $(logout).append(logoutImg);
             let rowDiv = quickstart.PageWithForm.createElement(quickstart.PageWithForm.HTMLTypes.DIV, "row");
