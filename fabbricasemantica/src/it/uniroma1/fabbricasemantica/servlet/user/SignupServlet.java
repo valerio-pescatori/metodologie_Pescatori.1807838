@@ -24,29 +24,24 @@ public class SignupServlet extends BaseServlet
 			throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
-		/*if (session.getAttribute("username") != null ) page = "home.html";
+		Map<String, String[]> pMap = request.getParameterMap();
+		// se l'email c'è già o le password non corrispondono -> redirect a signup
+		if (!pMap.get("password")[0].equals(pMap.get("passRepeat")[0]))
+			page = "signup.html?nopass";
+		// controllo se l'utente è registrato
 		else
-		{*/
-		
-			Map<String, String[]> pMap = request.getParameterMap();
-			// se l'email c'è già o le password non corrispondono -> redirect a signup
-			if (!pMap.get("password")[0].equals(pMap.get("passRepeat")[0]))
-				page = "signup.html?nopass";
-			// controllo se l'utente è registrato
+		{ 
+			Map<String, ArrayList<String>> qMap = DBHandler.selectQuery("user", "email");
+			if (qMap.get("email").contains("'"+pMap.get("email")[0]+"'"))
+				page = "signup.html?already";
 			else
-			{ 
-				Map<String, ArrayList<String>> qMap = DBHandler.selectQuery("user", "email");
-				if (qMap.get("email").contains("'"+pMap.get("email")[0]+"'"))
-					page = "signup.html?already";
-				else
-				{
-					// altrimenti lo registro e redirect a home.html
-					DBHandler.insertQuery("user", "(email, password)", "'"+pMap.get("email")[0]+"'", "'"+pMap.get("password")[0]+"'");
-					session.setAttribute("username", pMap.get("email")[0]);
-					page = "home.html";
-				}
-			} 
-		//}
+			{
+				// altrimenti lo registro e redirect a home.html
+				DBHandler.insertQuery("user", "(email, password)", "'"+pMap.get("email")[0]+"'", "'"+pMap.get("password")[0]+"'");
+				session.setAttribute("username", pMap.get("email")[0]);
+				page = "home.html";
+			}
+		}
 		response.sendRedirect(page);
 	}
 }

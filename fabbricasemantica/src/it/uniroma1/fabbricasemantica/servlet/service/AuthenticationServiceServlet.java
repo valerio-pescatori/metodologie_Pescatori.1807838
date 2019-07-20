@@ -21,7 +21,8 @@ public class AuthenticationServiceServlet extends BaseServlet {
 		// nel nostro caso ci scriviamo "true" o "false" a seconda se l'utente e' loggato o meno.
 		HttpSession session = request.getSession();
 		boolean isLoggedIn = session.getAttribute("username") != null;
-		response.getWriter().write(isLoggedIn + "");
+		String result = "{\"logged\":\""+isLoggedIn+"\",\"username\":\""+session.getAttribute("username")+"\"}";
+		response.getWriter().write(result);
 	}
 
 }

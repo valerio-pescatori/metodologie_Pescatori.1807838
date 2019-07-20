@@ -22,14 +22,9 @@ public class LoginServlet extends BaseServlet
 	protected void doSomething(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		/*
-		 * $.get(authenticationService, (Object result, String a, JQueryXHR ctx) -> {
-		 * isLoggedIn = Boolean.parseBoolean((String)result); return null; });
-		 */
-		
 		HttpSession session = request.getSession();
 		if (session.getAttribute("username") != null)
-			page = "home.html";
+			page = "home.html?alreadylogged";
 		else
 		{
 			String email = "'" + request.getParameter("email") + "'";

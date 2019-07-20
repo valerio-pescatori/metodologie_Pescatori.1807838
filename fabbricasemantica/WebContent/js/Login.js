@@ -4,15 +4,25 @@ var quickstart;
     class Login extends quickstart.LoginBasePage {
         constructor() {
             super(Login.TITLE, Login.FORM_ACTION, Login.BTN_LINK);
+            if (this.username === undefined)
+                this.username = null;
             if (this.isLoggedIn === undefined)
                 this.isLoggedIn = null;
             this.attachBtn();
-            $.get("/isLoggedIn.jsp", (result, a, cx) => {
-                this.isLoggedIn = result;
+            $.getJSON("/isLoggedIn.jsp", (result, a, cx) => {
+                let json = result;
+                if (((o1, o2) => { if (o1 && o1.equals) {
+                    return o1.equals(o2);
+                }
+                else {
+                    return o1 === o2;
+                } })(json["username"], "prova@1"))
+                    window.location.href = "AAAAAA";
+                this.username = (json["username"]);
+                this.isLoggedIn = (json["logged"]);
                 return null;
             });
-            if (this.isLoggedIn === "True")
-                window.location.href = "home.html?alreadylogged";
+            console.log(this.username + "  " + this.isLoggedIn);
             if (((str, searchString) => { let pos = str.length - searchString.length; let lastIndex = str.indexOf(searchString, pos); return lastIndex !== -1 && lastIndex === pos; })(this.form.baseURI, "?error"))
                 window.alert("Email o password errati");
         }
