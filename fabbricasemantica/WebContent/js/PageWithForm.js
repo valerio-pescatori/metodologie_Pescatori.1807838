@@ -69,6 +69,14 @@ var quickstart;
             }
             return element;
         }
+        static randomPage() {
+            let values = function () { let result = []; for (let val in quickstart.StandardTask) {
+                if (!isNaN(val)) {
+                    result.push(parseInt(val, 10));
+                }
+            } return result; }();
+            return quickstart.StandardTask["_$wrappers"][values[((Math.random() * (values.length)) | 0)]].getUrl();
+        }
     }
     quickstart.PageWithForm = PageWithForm;
     PageWithForm["__class"] = "quickstart.PageWithForm";

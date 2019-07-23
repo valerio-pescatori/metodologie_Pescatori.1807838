@@ -46,7 +46,7 @@ public abstract class PageWithForm {
 	}
 
 	/*
-	 * LABEL: textContent
+	 * LABEL: textContent, className
 	 * 
 	 * ANCHOR: className, href, textContent
 	 * 
@@ -117,5 +117,13 @@ public abstract class PageWithForm {
 		}
 		return element;
 	}
+	
+	protected static String randomPage()
+	{
+		StandardTask[] values = StandardTask.values();
+		return values[(int) (Math.random() * (values.length))].getUrl();
+	}
 
 }
+	
+	

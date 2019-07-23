@@ -4,8 +4,16 @@ var quickstart;
     class Home extends quickstart.PageWithForm {
         constructor() {
             super(Home.TITLE, "");
+            if (this.username === undefined)
+                this.username = null;
+            $.get("/fabbricasemantica/isLoggedIn.jsp", (result, a, cx) => {
+                this.username = result;
+                if (this.username == null)
+                    window.location.href = "/fabbricasemantica/login.html";
+                return null;
+            });
             let start = document.createElement("a");
-            start.href = Home.randomPage();
+            start.href = quickstart.PageWithForm.randomPage();
             let startImg = document.createElement("img");
             startImg.className = "float-right";
             startImg.src = "start.svg";
@@ -36,14 +44,8 @@ var quickstart;
             $(logoutCol).append(logout);
             $(rowDiv).append(startCol, logoutCol);
             $(this.container).append(rowDiv);
-        }
-        /*private*/ static randomPage() {
-            let values = function () { let result = []; for (let val in quickstart.StandardTask) {
-                if (!isNaN(val)) {
-                    result.push(parseInt(val, 10));
-                }
-            } return result; }();
-            return quickstart.StandardTask["_$wrappers"][values[((Math.random() * (values.length)) | 0)]].getUrl();
+            if (((str, searchString) => { let pos = str.length - searchString.length; let lastIndex = str.indexOf(searchString, pos); return lastIndex !== -1 && lastIndex === pos; })(this.form.baseURI, "?welcomeback"))
+                window.alert("Bentornato!");
         }
         static main(args) {
             let page = new Home();

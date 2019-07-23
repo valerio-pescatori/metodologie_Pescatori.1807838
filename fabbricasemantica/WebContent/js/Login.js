@@ -8,7 +8,7 @@ var quickstart;
             $.get("/fabbricasemantica/isLoggedIn.jsp", (result, a, cx) => {
                 let username = result;
                 if (username != null)
-                    window.location.href = "AAAAAA";
+                    window.location.href = "/fabbricasemantica/home.html?welcomeback";
                 return null;
             });
             if (((str, searchString) => { let pos = str.length - searchString.length; let lastIndex = str.indexOf(searchString, pos); return lastIndex !== -1 && lastIndex === pos; })(this.form.baseURI, "?error"))

@@ -40,7 +40,6 @@ public class Signup extends LoginBasePage{
 		attachBtn();
 		if(this.form.baseURI.endsWith("?nopass")) window.alert("Le password inserite non corrispondono");
 		else if(this.form.baseURI.endsWith("?already")) window.alert("Questa email risulta essere già registrata");
-		
 	}
 	
 	public static void main(String[] args) {
