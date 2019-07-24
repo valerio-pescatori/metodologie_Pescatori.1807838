@@ -3,20 +3,21 @@ package quickstart;
 import static def.dom.Globals.document;
 import static def.dom.Globals.window;
 import static def.jquery.Globals.$;
+import static quickstart.HTMLUtils.createElement;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import def.dom.HTMLElement;
+import quickstart.HTMLUtils.HTMLTypes;
 
 public class Signup extends LoginBasePage{
 	private static final String TITLE = "Sign Up";
 	private static final String FORM_ACTION = "signup.jsp";
-	private static final String BTN_LINK = "login.html";
 
 
 	private Signup() {
-		super(TITLE, FORM_ACTION, BTN_LINK);
+		super(TITLE, FORM_ACTION);
 		
 		HTMLElement repeatLabel = createElement(HTMLTypes.LABEL, "Reinserire la password:");
 		HTMLElement passRepeat = createElement(HTMLTypes.TEXTINPUT, "form-control", "password", "Reinserire la password qui...", "passRepeat");

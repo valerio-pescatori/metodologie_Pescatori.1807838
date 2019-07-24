@@ -21,12 +21,12 @@ var quickstart;
             this.input = document.createElement("input");
             this.input.name = "input";
             this.input.className = "form-control";
-            this.btnRow = quickstart.PageWithForm.createElement(quickstart.PageWithForm.HTMLTypes.DIV, "btn-group");
-            this.inputDiv = quickstart.PageWithForm.createElement(quickstart.PageWithForm.HTMLTypes.DIV, "form-group");
+            this.btnRow = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.DIV, "btn-group");
+            this.inputDiv = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.DIV, "form-group");
             $(this.inputDiv).append(this.annotationDescription, this.word, this.input);
-            let next = quickstart.PageWithForm.createElement(quickstart.PageWithForm.HTMLTypes.INPUTBUTTON, "btn btn-primary", "submit", "Next");
-            let skip = quickstart.PageWithForm.createElement(quickstart.PageWithForm.HTMLTypes.ANCHOR, "btn btn-secondary", quickstart.PageWithForm.randomPage(), "Skip");
-            let logout = quickstart.PageWithForm.createElement(quickstart.PageWithForm.HTMLTypes.ANCHOR, "btn btn-danger", "logout.jsp", "Logout");
+            let next = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.INPUTBUTTON, "btn btn-primary", "submit", "Next");
+            let skip = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.ANCHOR, "btn btn-secondary", quickstart.HTMLUtils.randomPage(), "Skip");
+            let logout = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.ANCHOR, "btn btn-danger", "logout.jsp", "Logout");
             $(this.btnRow).append(next, skip, logout);
             $(this.form).append(this.inputDiv);
         }

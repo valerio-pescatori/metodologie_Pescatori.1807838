@@ -3,7 +3,7 @@ var quickstart;
 (function (quickstart) {
     class Login extends quickstart.LoginBasePage {
         constructor() {
-            super(Login.TITLE, Login.FORM_ACTION, Login.BTN_LINK);
+            super(Login.TITLE, Login.FORM_ACTION);
             this.attachBtn();
             $.get("/fabbricasemantica/isLoggedIn.jsp", (result, a, cx) => {
                 let username = result;
@@ -20,7 +20,6 @@ var quickstart;
     }
     Login.TITLE = "Login";
     Login.FORM_ACTION = "login.jsp";
-    Login.BTN_LINK = "signup.html";
     quickstart.Login = Login;
     Login["__class"] = "quickstart.Login";
 })(quickstart || (quickstart = {}));

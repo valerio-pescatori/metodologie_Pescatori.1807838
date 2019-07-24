@@ -9,10 +9,9 @@ public class Login extends LoginBasePage{
 
 	private static final String TITLE = "Login";
 	private static final String FORM_ACTION = "login.jsp";
-	private static final String BTN_LINK = "signup.html";
 
 	private Login() {
-		super(TITLE, FORM_ACTION, BTN_LINK);
+		super(TITLE, FORM_ACTION);
 		attachBtn();
 		$.get("/fabbricasemantica/isLoggedIn.jsp", (Object result, String a, JQueryXHR cx) -> {
 			String username = (String) result;

@@ -2,7 +2,10 @@ package quickstart;
 
 import static def.dom.Globals.document;
 import static def.jquery.Globals.$;
+import static quickstart.HTMLUtils.createElement;
+import static quickstart.HTMLUtils.randomPage;
 
+import quickstart.HTMLUtils.HTMLTypes;
 import def.dom.HTMLElement;
 import def.dom.HTMLInputElement;
 import def.dom.HTMLLabelElement;

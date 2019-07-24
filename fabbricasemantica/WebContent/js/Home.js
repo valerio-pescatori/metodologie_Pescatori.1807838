@@ -6,14 +6,28 @@ var quickstart;
             super(Home.TITLE, "");
             if (this.username === undefined)
                 this.username = null;
-            $.get("/fabbricasemantica/isLoggedIn.jsp", (result, a, cx) => {
-                this.username = result;
-                if (this.username == null)
-                    window.location.href = "/fabbricasemantica/login.html";
-                return null;
-            });
+            let userSpan = document.createElement("span");
+            userSpan.className = "navbar-text";
+            $.get("/fabbricasemantica/isLoggedIn.jsp", ((userSpan) => {
+                return (result, a, cx) => {
+                    this.username = result;
+                    userSpan.textContent = "Welcome, " + this.username.substring(1, this.username.length - 1) + "!";
+                    if (this.username == null)
+                        window.location.href = "/fabbricasemantica/login.html";
+                    return null;
+                };
+            })(userSpan));
+            let logoutNav = document.createElement("li");
+            logoutNav.className = "nav-item";
+            let logoutLink = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.ANCHOR, "nav-link", "logout.jsp", "Logout");
+            let home = document.createElement("li");
+            home.className = "nav-item active";
+            let homeLink = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.ANCHOR, "nav-link", "home.html", "Home");
+            $(logoutNav).append(logoutLink);
+            $(home).append(homeLink);
+            $(this.navbarNav).append(home, logoutNav, userSpan);
             let start = document.createElement("a");
-            start.href = quickstart.PageWithForm.randomPage();
+            start.href = quickstart.HTMLUtils.randomPage();
             let startImg = document.createElement("img");
             startImg.className = "float-right";
             startImg.src = "start.svg";
@@ -36,9 +50,9 @@ var quickstart;
             })(logoutImg);
             $(start).append(startImg);
             $(logout).append(logoutImg);
-            let rowDiv = quickstart.PageWithForm.createElement(quickstart.PageWithForm.HTMLTypes.DIV, "row");
-            let startCol = quickstart.PageWithForm.createElement(quickstart.PageWithForm.HTMLTypes.DIV, "col-3");
-            let logoutCol = quickstart.PageWithForm.createElement(quickstart.PageWithForm.HTMLTypes.DIV, "col-3");
+            let rowDiv = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.DIV, "row");
+            let startCol = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.DIV, "col-3");
+            let logoutCol = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.DIV, "col-3");
             this.form.hidden = true;
             $(startCol).append(start);
             $(logoutCol).append(logout);
