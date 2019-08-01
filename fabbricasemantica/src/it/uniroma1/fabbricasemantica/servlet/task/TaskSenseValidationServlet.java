@@ -6,7 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import it.uniroma1.fabbricasemantica.db.DBHandler;
 import it.uniroma1.fabbricasemantica.servlet.BaseServlet;
 
 @WebServlet(name = "TaskSenseValidationServlet", urlPatterns = "/senseValidation.jsp")
@@ -15,9 +17,11 @@ public class TaskSenseValidationServlet extends BaseServlet {
 
 	@Override
 	protected void doSomething(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO Salvare i dati
-		//TODO reinderizzare a un task a caso.
-		response.sendRedirect("senseValidation.html");
+		HttpSession session = request.getSession();
+		boolean hasSense = Boolean.parseBoolean(request.getParameterValues("radio")[0]);
+		String[] input = request.getParameter("wordInput").split(",");
+		DBHandler.insertQuery("senseValidation", "", input[0], input[1], input[2], hasSense, session.getAttribute("username"));
+		response.sendRedirect(randomPage());
 	}
 
 }

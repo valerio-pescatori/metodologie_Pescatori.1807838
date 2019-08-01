@@ -1,38 +1,34 @@
 /* Generated from Java with JSweet 2.3.0-SNAPSHOT - http://www.jsweet.org */
-var quickstart;
-(function (quickstart) {
-    class Signup extends quickstart.LoginBasePage {
+var js;
+(function (js) {
+    class Signup extends js.LoginBasePage {
         constructor() {
             super(Signup.TITLE, Signup.FORM_ACTION);
-            let repeatLabel = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.LABEL, "Reinserire la password:");
-            let passRepeat = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.TEXTINPUT, "form-control", "password", "Reinserire la password qui...", "passRepeat");
-            let langs = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.LABEL, "Lingue parlate come madrelingua:");
+            let repeatLabel = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.LABEL, "Reinserire la password:");
+            let passRepeat = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.TEXTINPUT, "form-control", "password", "Reinserire la password qui...", "passRepeat");
+            let langs = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.LABEL, "Lingue parlate come madrelingua:");
             $(this.inputDiv).append(repeatLabel, passRepeat, langs);
             let checkN = 0;
             {
-                let array122 = ["IT", "EN"].slice(0);
-                for (let index121 = 0; index121 < array122.length; index121++) {
-                    let s = array122[index121];
+                let array125 = ["IT", "EN"];
+                for (let index124 = 0; index124 < array125.length; index124++) {
+                    let s = array125[index124];
                     {
-                        let div = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.DIV, "form-check");
-                        let input = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.CHECKBOX, "form-check-input", "check" + checkN);
-                        let label = document.createElement("label");
-                        label.className = "form-check-label";
-                        $(label).append(input, s);
-                        $(div).append(label);
+                        let div = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "custom-control custom-checkbox");
+                        let input = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.CHECKBOX, "custom-control-input", "check" + checkN);
+                        let label = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.LABEL, s, "custom-control-label");
+                        input.id = "box" + checkN;
+                        $(label).attr("for", "box" + checkN);
+                        $(div).append(input, label);
                         $(this.inputDiv).append(div);
                         checkN++;
                     }
                 }
             }
-            let textLabel = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.LABEL, "Inserire qui altre lingue parlate e il livello con cui sono parlate (A1, A2, B1, B2, C1, C2)");
-            let textArea = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.TEXTAREA, "form-control", "3", "textArea");
+            let textLabel = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.LABEL, "Inserire qui altre lingue parlate e il livello con cui sono parlate (A1, A2, B1, B2, C1, C2)");
+            let textArea = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.TEXTAREA, "form-control", "3", "textArea");
             $(this.inputDiv).append(textLabel, textArea);
             this.attachBtn();
-            if (((str, searchString) => { let pos = str.length - searchString.length; let lastIndex = str.indexOf(searchString, pos); return lastIndex !== -1 && lastIndex === pos; })(this.form.baseURI, "?nopass"))
-                window.alert("Le password inserite non corrispondono");
-            else if (((str, searchString) => { let pos = str.length - searchString.length; let lastIndex = str.indexOf(searchString, pos); return lastIndex !== -1 && lastIndex === pos; })(this.form.baseURI, "?already"))
-                window.alert("Questa email risulta essere gi\u00e0 registrata");
         }
         static main(args) {
             let page = new Signup();
@@ -40,7 +36,7 @@ var quickstart;
     }
     Signup.TITLE = "Sign Up";
     Signup.FORM_ACTION = "signup.jsp";
-    quickstart.Signup = Signup;
-    Signup["__class"] = "quickstart.Signup";
-})(quickstart || (quickstart = {}));
-quickstart.Signup.main(null);
+    js.Signup = Signup;
+    Signup["__class"] = "js.Signup";
+})(js || (js = {}));
+js.Signup.main(null);

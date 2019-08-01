@@ -1,7 +1,7 @@
 /* Generated from Java with JSweet 2.3.0-SNAPSHOT - http://www.jsweet.org */
-var quickstart;
-(function (quickstart) {
-    class Home extends quickstart.PageWithForm {
+var js;
+(function (js) {
+    class Home extends js.PageWithForm {
         constructor() {
             super(Home.TITLE, "");
             if (this.username === undefined)
@@ -11,23 +11,23 @@ var quickstart;
             $.get("/fabbricasemantica/isLoggedIn.jsp", ((userSpan) => {
                 return (result, a, cx) => {
                     this.username = result;
-                    userSpan.textContent = "Welcome, " + this.username.substring(1, this.username.length - 1) + "!";
-                    if (this.username == null)
+                    userSpan.textContent = "Welcome, " + this.username + "!";
+                    if (this.username === "false")
                         window.location.href = "/fabbricasemantica/login.html";
                     return null;
                 };
             })(userSpan));
             let logoutNav = document.createElement("li");
             logoutNav.className = "nav-item";
-            let logoutLink = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.ANCHOR, "nav-link", "logout.jsp", "Logout");
+            let logoutLink = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.ANCHOR, "nav-link", "logout.jsp", "Logout");
             let home = document.createElement("li");
             home.className = "nav-item active";
-            let homeLink = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.ANCHOR, "nav-link", "home.html", "Home");
+            let homeLink = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.ANCHOR, "nav-link", "home.html", "Home");
             $(logoutNav).append(logoutLink);
             $(home).append(homeLink);
             $(this.navbarNav).append(home, logoutNav, userSpan);
             let start = document.createElement("a");
-            start.href = quickstart.HTMLUtils.randomPage();
+            start.href = js.HTMLUtils.randomPage();
             let startImg = document.createElement("img");
             startImg.className = "float-right";
             startImg.src = "start.svg";
@@ -50,23 +50,21 @@ var quickstart;
             })(logoutImg);
             $(start).append(startImg);
             $(logout).append(logoutImg);
-            let rowDiv = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.DIV, "row");
-            let startCol = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.DIV, "col-3");
-            let logoutCol = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.DIV, "col-3");
+            let rowDiv = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "row");
+            let startCol = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "col-3");
+            let logoutCol = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "col-3");
             this.form.hidden = true;
             $(startCol).append(start);
             $(logoutCol).append(logout);
             $(rowDiv).append(startCol, logoutCol);
             $(this.container).append(rowDiv);
-            if (((str, searchString) => { let pos = str.length - searchString.length; let lastIndex = str.indexOf(searchString, pos); return lastIndex !== -1 && lastIndex === pos; })(this.form.baseURI, "?welcomeback"))
-                window.alert("Bentornato!");
         }
         static main(args) {
             let page = new Home();
         }
     }
     Home.TITLE = "Home";
-    quickstart.Home = Home;
-    Home["__class"] = "quickstart.Home";
-})(quickstart || (quickstart = {}));
-quickstart.Home.main(null);
+    js.Home = Home;
+    Home["__class"] = "js.Home";
+})(js || (js = {}));
+js.Home.main(null);

@@ -1,6 +1,6 @@
 /* Generated from Java with JSweet 2.3.0-SNAPSHOT - http://www.jsweet.org */
-var quickstart;
-(function (quickstart) {
+var js;
+(function (js) {
     class PageWithForm {
         constructor(title, formAction) {
             if (this.container === undefined)
@@ -16,10 +16,10 @@ var quickstart;
             this.form.action = formAction;
             let heading = document.createElement("h1");
             $(heading).html(title);
-            let jumbo = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.DIV, "jumbotron");
-            let navbar = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.DIV, "navbar navbar-expand-sm bg-dark navbar-dark");
-            let containerFluid = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.DIV, "container-fluid");
-            let navbarHeader = quickstart.HTMLUtils.createElement(quickstart.HTMLUtils.HTMLTypes.DIV, "navbar-header");
+            let jumbo = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "jumbotron");
+            let navbar = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "navbar navbar-expand-sm bg-dark navbar-dark");
+            let containerFluid = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "container-fluid");
+            let navbarHeader = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "navbar-header");
             let navTitle = document.createElement("li");
             navTitle.className = "navbar-brand";
             navTitle.textContent = "Fabbrica Semantica";
@@ -33,6 +33,6 @@ var quickstart;
             $("body").append(navbar, jumbo, this.container);
         }
     }
-    quickstart.PageWithForm = PageWithForm;
-    PageWithForm["__class"] = "quickstart.PageWithForm";
-})(quickstart || (quickstart = {}));
+    js.PageWithForm = PageWithForm;
+    PageWithForm["__class"] = "js.PageWithForm";
+})(js || (js = {}));

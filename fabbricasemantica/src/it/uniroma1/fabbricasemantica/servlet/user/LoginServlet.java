@@ -23,23 +23,19 @@ public class LoginServlet extends BaseServlet
 			throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
-		if (session.getAttribute("username") != null)
-			page = "home.html?alreadylogged";
-		else
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		Map<String, ArrayList<String>> qMap = DBHandler.selectQuery("user", "email", "password");
+		int emailIndex = qMap.get("email").indexOf(email);
+		int passwordIndex = qMap.get("password").indexOf(password);
+		if (emailIndex == passwordIndex && emailIndex != -1)
 		{
-			String email = "'" + request.getParameter("email") + "'";
-			String password = "'" + request.getParameter("password") + "'";
-			Map<String, ArrayList<String>> qMap = DBHandler.selectQuery("user", "email", "password");
-			int emailIndex = qMap.get("email").indexOf(email);
-			int passwordIndex = qMap.get("password").indexOf(password);
-			if (emailIndex == passwordIndex && emailIndex != -1)
-			{
-				// loggo l'utente e lo redirecto a home.html
-				session.setAttribute("username", email);
-				page = "home.html";
-			} else
-				page = "login.html?error";
-		}
+			// loggo l'utente e lo redirecto a home.html
+			session.setAttribute("username", email);
+			page = "home.html";
+		} else
+			page = "login.html?error";
+
 		response.sendRedirect(page);
 	}
 

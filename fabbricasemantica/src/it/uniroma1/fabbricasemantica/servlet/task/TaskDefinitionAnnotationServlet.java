@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.uniroma1.fabbricasemantica.db.DBHandler;
 import it.uniroma1.fabbricasemantica.servlet.BaseServlet;
 
 @WebServlet(name = "TaskDefinitionAnnotationServlet", urlPatterns = "/definitionAnnotation.jsp")
@@ -15,9 +16,10 @@ public class TaskDefinitionAnnotationServlet extends BaseServlet {
 
 	@Override
 	protected void doSomething(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO Salvare i dati
-		//TODO reinderizzare a un task a caso.
-		response.sendRedirect("definitionAnnotation.html");
+		String definition = request.getParameter("input");
+		String word = request.getParameter("wordInput");
+		DBHandler.insertQuery("definitionAnnotation", "(word, definition)", word, definition);
+		response.sendRedirect(randomPage());
 	}
 
 }

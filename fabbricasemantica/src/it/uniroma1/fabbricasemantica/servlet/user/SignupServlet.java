@@ -37,7 +37,7 @@ public class SignupServlet extends BaseServlet
 			else
 			{
 				// altrimenti lo registro e redirect a home.html
-				DBHandler.insertQuery("user", "(email, password)", "'"+pMap.get("email")[0]+"'", "'"+pMap.get("password")[0]+"'");
+				DBHandler.insertQuery("user", "(email, password)", pMap.get("email")[0], pMap.get("password")[0]);
 				session.setAttribute("username", pMap.get("email")[0]);
 				page = "home.html";
 			}
