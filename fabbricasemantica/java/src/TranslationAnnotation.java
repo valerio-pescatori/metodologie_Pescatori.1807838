@@ -1,4 +1,4 @@
-package quickstart;
+package js;
 
 import static def.jquery.Globals.$;
 
@@ -11,21 +11,22 @@ public class TranslationAnnotation extends AnnotationBasePage
 	public static final String FORM_ACTION = "translationAnnotation.jsp";
 	public static final String ANNOTATION_DESCRIPTION = "Data la seguente parola e una sua definizione in inglese, fornire una traduzione nella propria lingua madre:";
 
-	protected TranslationAnnotation()
+	private TranslationAnnotation()
 	{
 		super(TITLE, FORM_ACTION, ANNOTATION_DESCRIPTION);
 		attachBtn();
 		input.type = "text";
-		input.placeholder = "Inserire qui la traduzione";
+		input.placeholder = "Inserire qui la traduzione...";
 		$.getJSON(REST_URL, "task=TRANSLATION_ANNOTATION", (Object result, String a, JQueryXHR ctx) ->
 		{
 			JSON json = (JSON) result;
-			word.textContent = json.$get("word") + " - " + json.$get("description");
+			String word = json.$get("word");
+			this.wordInput.value = word;
+			this.word.textContent = word + " - " + json.$get("description");
 			return null;
 		});
-		attachBtn();
 	}
-	
+
 	public static void main(String[] args)
 	{
 		@SuppressWarnings("unused")

@@ -1,4 +1,4 @@
-package quickstart;
+package js;
 
 import static def.dom.Globals.document;
 import static def.jquery.Globals.$;

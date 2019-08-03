@@ -1,13 +1,16 @@
-package quickstart;
+package js;
 
 import static def.dom.Globals.document;
+import static def.dom.Globals.window;
 import static def.jquery.Globals.$;
-import static quickstart.HTMLUtils.createElement;
+import static js.HTMLUtils.createElement;
 
 import def.dom.HTMLElement;
 import def.dom.HTMLLIElement;
+import def.jquery.JQueryXHR;
+import js.Login;
+import js.HTMLUtils.HTMLTypes;
 import jsweet.util.StringTypes;
-import quickstart.HTMLUtils.HTMLTypes;
 
 /**
  * Pagina base che comprende un form con due input elements: il primo di tipo
@@ -27,15 +30,13 @@ public abstract class LoginBasePage extends PageWithForm
 	{
 		// genero una pagina con un titolo e form vuoto
 		super(title, formAction);
+		$.get("/fabbricasemantica/isLoggedIn.jsp", (Object result, String a, JQueryXHR cx) ->
+		{
+			if ((String) result != "false")
+				window.location.href = "/fabbricasemantica/home.html?welcomeback";
+			return null;
+		});
 		// aggiungo link alla navbar
-		/* <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  				<ul class="navbar-nav">
-    				<li class="nav-item active">
-      					<a class="nav-link" href="#">Active</a>
-    				</li>
-    				<li class="nav-item">
-      					<a class="nav-link" href="#">Link</a>
-    				</li>*/
 		HTMLLIElement login = document.createElement(StringTypes.li);
 		HTMLLIElement signup = document.createElement(StringTypes.li);
 		HTMLElement loginLink = createElement(HTMLTypes.ANCHOR, "nav-link", "login.html", "Login");
@@ -43,12 +44,11 @@ public abstract class LoginBasePage extends PageWithForm
 		$(login).append(loginLink);
 		$(signup).append(signupLink);
 		$(this.navbarNav).append(login, signup);
-		if(this.getClass().equals(Login.class))
+		if (this.getClass().equals(Login.class))
 		{
 			login.className = "nav-item active";
 			signup.className = "nav-item";
-		}
-		else
+		} else
 		{
 			login.className = "nav-item";
 			signup.className = "nav-item  active";
@@ -68,7 +68,6 @@ public abstract class LoginBasePage extends PageWithForm
 		// creo i bottoni e li aggiungo al proprio div senza appenderli
 		HTMLElement submitBtn = createElement(HTMLTypes.INPUTBUTTON, "btn btn-primary", "submit", "Submit");
 		HTMLElement resetBtn = createElement(HTMLTypes.INPUTBUTTON, "btn btn-secondary", "reset", "Reset");
-		
 
 		this.btnRow = createElement(HTMLTypes.DIV, "btn-group");
 		$(btnRow).append(submitBtn, resetBtn);

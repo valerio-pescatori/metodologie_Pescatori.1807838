@@ -1,10 +1,10 @@
-package quickstart;
+package js;
 
 import static def.dom.Globals.document;
 import static def.dom.Globals.window;
 import static def.jquery.Globals.$;
-import static quickstart.HTMLUtils.createElement;
-import static quickstart.HTMLUtils.randomPage;
+import static js.HTMLUtils.createElement;
+import static js.HTMLUtils.randomPage;
 
 import def.dom.HTMLAnchorElement;
 import def.dom.HTMLElement;
@@ -12,13 +12,14 @@ import def.dom.HTMLImageElement;
 import def.dom.HTMLLIElement;
 import def.dom.HTMLSpanElement;
 import def.jquery.JQueryXHR;
+import js.PageWithForm;
+import js.HTMLUtils.HTMLTypes;
 import jsweet.util.StringTypes;
-import quickstart.HTMLUtils.HTMLTypes;
 
 public class Home extends PageWithForm
 {
 	public static final String TITLE = "Home";
-	public String username;
+	private String username;
 	
 	protected Home()
 	{
@@ -27,8 +28,8 @@ public class Home extends PageWithForm
 		userSpan.className = "navbar-text";
 		$.get("/fabbricasemantica/isLoggedIn.jsp", (Object result, String a, JQueryXHR cx) -> {
 			username = (String) result;
-			userSpan.textContent = "Welcome, "+ username.substring(1, username.length()-1)+"!";
-			if (username == null) window.location.href = "/fabbricasemantica/login.html";
+			userSpan.textContent = "Welcome, "+ username+"!";
+			if (username == "false") window.location.href = "/fabbricasemantica/login.html";
 			return null;
 		});
 		HTMLLIElement logoutNav = document.createElement(StringTypes.li);
@@ -70,7 +71,7 @@ public class Home extends PageWithForm
 		$(logoutCol).append(logout);
 		$(rowDiv).append(startCol, logoutCol);
 		$(this.container).append(rowDiv);
-		if(this.form.baseURI.endsWith("?welcomeback")) window.alert("Bentornato!");
+		/*if(this.form.baseURI.endsWith("?welcomeback")) window.alert("Bentornato!");*/
 	}
 
 	public static void main(String[] args)

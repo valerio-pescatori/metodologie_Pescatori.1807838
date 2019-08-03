@@ -1,8 +1,8 @@
-package quickstart;
+package js;
 
 import static def.dom.Globals.document;
 import static def.jquery.Globals.$;
-import static quickstart.HTMLUtils.createElement;
+import static js.HTMLUtils.createElement;
 
 import def.dom.HTMLDivElement;
 import def.dom.HTMLElement;
@@ -10,8 +10,8 @@ import def.dom.HTMLFormElement;
 import def.dom.HTMLHeadingElement;
 import def.dom.HTMLLIElement;
 import def.dom.HTMLUListElement;
+import js.HTMLUtils.HTMLTypes;
 import jsweet.util.StringTypes;
-import quickstart.HTMLUtils.HTMLTypes;
 
 public abstract class PageWithForm
 {
