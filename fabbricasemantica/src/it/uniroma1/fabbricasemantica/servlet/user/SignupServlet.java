@@ -27,17 +27,17 @@ public class SignupServlet extends BaseServlet
 		Map<String, String[]> pMap = request.getParameterMap();
 		// se l'email c'è già o le password non corrispondono -> redirect a signup
 		if (!pMap.get("password")[0].equals(pMap.get("passRepeat")[0]))
-			page = "signup.html?nopass";
+			page = "signup.html";
 		// controllo se l'utente è registrato
 		else
 		{ 
 			Map<String, ArrayList<String>> qMap = DBHandler.selectQuery("user", "email");
 			if (qMap.get("email").contains("'"+pMap.get("email")[0]+"'"))
-				page = "signup.html?already";
+				page = "signup.html";
 			else
 			{
 				// altrimenti lo registro e redirect a home.html
-				DBHandler.insertQuery("user", "(email, password)", pMap.get("email")[0], pMap.get("password")[0]);
+				DBHandler.insertQuery("user", pMap.get("email")[0], pMap.get("password")[0]);
 				session.setAttribute("username", pMap.get("email")[0]);
 				page = "home.html";
 			}

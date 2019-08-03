@@ -18,7 +18,7 @@ public class TaskWordAnnotationServlet extends BaseServlet {
 	protected void doSomething(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String word = request.getParameter("input");
 		String description = request.getParameter("wordInput");
-		DBHandler.insertQuery("wordAnnotation", "(definition, word)", description, word);
+		DBHandler.insertQuery("wordAnnotation", description, word, username);
 		response.sendRedirect(randomPage());
 	}
 

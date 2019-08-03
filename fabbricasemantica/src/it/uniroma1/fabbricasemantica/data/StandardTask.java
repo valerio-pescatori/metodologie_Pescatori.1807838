@@ -7,7 +7,7 @@ public enum StandardTask implements Task {
 	SENSE_ANNOTATION("senseAnnotation.html"),
 	TRANSLATION_VALIDATION("translationValidation.html"),
 	SENSE_VALIDATION("senseValidation.html"),
-	MY_ANNOTATOIN("myAnnotation.html");
+	MY_ANNOTATION("myAnnotation.html");
 	
 	private String url;
 	

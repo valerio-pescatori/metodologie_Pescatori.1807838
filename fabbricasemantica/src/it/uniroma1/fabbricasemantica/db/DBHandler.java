@@ -33,7 +33,7 @@ public class DBHandler
 	}
 
 	// insert into x values (a,b,c)
-	public static void insertQuery(String table, String fields, Object... values)
+	public static void insertQuery(String table, Object... values)
 	{
 		try (Connection connection = getConnection())
 		{

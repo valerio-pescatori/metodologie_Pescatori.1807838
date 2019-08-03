@@ -34,7 +34,7 @@ public class LoginServlet extends BaseServlet
 			session.setAttribute("username", email);
 			page = "home.html";
 		} else
-			page = "login.html?error";
+			page = "login.html";
 
 		response.sendRedirect(page);
 	}

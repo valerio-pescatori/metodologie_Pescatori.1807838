@@ -15,14 +15,17 @@ public abstract class BaseServlet extends HttpServlet
 
 	protected String page;
 	public final static String authenticationService = "/isLoggedIn.jsp";
-
+	protected String username;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		this.username = (String) request.getSession().getAttribute("username");
 		doSomething(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		this.username = (String) request.getSession().getAttribute("username");
 		doSomething(request, response);
 	}
 

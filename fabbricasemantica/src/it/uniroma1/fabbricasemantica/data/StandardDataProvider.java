@@ -39,10 +39,10 @@ public class StandardDataProvider implements DataProvider<String>
 		{
 			return "{" + "\"word\": \"bank\"," + "\"example\": \"He cashed a check at the bank\","
 					+ "\"sense\": \"Sloping land (especially the slope beside a body of water)\"" + "}";
-		} else if (task == StandardTask.MY_ANNOTATOIN)
+		} else if (task == StandardTask.MY_ANNOTATION)
 		{
-			return "{ \"words\": [\"parola1\",\"parola2\",\"parola3\"]"
-					+ "\"translations\": [\"word1\",\"word2\", \"word3\"] }";
+			return "{ \"words\": [\"parola1\",\"parola2\",\"parola3\"],"
+					+ "\"translations\": [\"word1\",\"word2\", \"word3\"]}";
 		}
 		
 		return null;

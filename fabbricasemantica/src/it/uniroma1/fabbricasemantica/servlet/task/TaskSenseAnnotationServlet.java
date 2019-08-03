@@ -22,8 +22,7 @@ public class TaskSenseAnnotationServlet extends BaseServlet
 	{
 		String[] box = request.getParameterValues("check");
 		String word = request.getParameter("wordInput");
-		String username = (String) request.getSession().getAttribute("username");
-		DBHandler.insertQuery("senseAnnotation", "", word, Arrays.toString(box), username);
+		DBHandler.insertQuery("senseAnnotation", word, Arrays.toString(box), username);
 		response.sendRedirect(randomPage());
 	}
 }

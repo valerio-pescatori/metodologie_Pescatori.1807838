@@ -7,17 +7,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.uniroma1.fabbricasemantica.db.DBHandler;
 import it.uniroma1.fabbricasemantica.servlet.BaseServlet;
 
 @WebServlet(name = "TaskMyAnnotationServlet", urlPatterns = "/myAnnotation.jsp")
-public class TaskMyAnnotationServlet extends BaseServlet {
+public class TaskMyAnnotationServlet extends BaseServlet
+{
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doSomething(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO Salvare i dati
-		//TODO reinderizzare a un task a caso.
-		response.sendRedirect("myAnnotation.html");
+	protected void doSomething(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException
+	{
+		String[] translations = request.getParameter("wordInput").split(",");
+		for (int i = 1; i < translations.length; i += 2)
+		{
+			String word = translations[i-1];
+			String translation = translations[i];
+			DBHandler.insertQuery("myAnnotation", word, translation, username);
+		}
+		response.sendRedirect(randomPage());
 	}
 
 }

@@ -21,7 +21,7 @@ public class TaskTranslationAnnotationServlet extends BaseServlet
 	{
 		String translation = request.getParameter("input");
 		String word = request.getParameter("wordInput");
-		DBHandler.insertQuery("translationAnnotation", "(word, translation)", word, translation);
+		DBHandler.insertQuery("translationAnnotation", word, translation, username);
 		response.sendRedirect(randomPage());
 	}
 
