@@ -16,9 +16,9 @@ var js;
                 }
                 while ((words.length > 0)) {
                     {
-                        let row = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "row text-center justify-content-around text-light font-weight-bolder");
+                        let row = js.HTMLUtils.createDiv("row text-center justify-content-around text-light font-weight-bolder");
                         row.setAttribute("style", "margin: 60px 0");
-                        let word = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "col-3 py-3 bg-primary shadow");
+                        let word = js.HTMLUtils.createDiv("col-3 py-3 bg-primary shadow");
                         let w = words.splice(((Math.random() * words.length) | 0), 1)[0];
                         $(word).html(w);
                         word.setAttribute("style", "border-radius:10px");
@@ -26,7 +26,7 @@ var js;
                         word.id = w;
                         word.ondragstart = (x) => x.dataTransfer.setData("text", $(x.target).attr("id"));
                         let t = translations.splice(((Math.random() * translations.length) | 0), 1)[0];
-                        let translation = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "col-3 py-3 bg-primary shadow");
+                        let translation = js.HTMLUtils.createDiv("col-3 py-3 bg-primary shadow");
                         $(translation).html(t);
                         translation.id = t;
                         translation.ondragover = (x) => {

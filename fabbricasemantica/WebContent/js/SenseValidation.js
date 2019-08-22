@@ -17,17 +17,15 @@ var js;
                     for (let index122 = 0; index122 < array123.length; index122++) {
                         let s = array123[index122];
                         {
-                            let div = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "custom-control custom-radio");
-                            let input = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.INPUTBUTTON, "custom-control-input", "radio", /* equals */ ((o1, o2) => { if (o1 && o1.equals) {
+                            let div = js.HTMLUtils.createDiv("custom-control custom-radio");
+                            let input = js.HTMLUtils.createInput("custom-control-input", "radio", "", "radio", /* equals */ ((o1, o2) => { if (o1 && o1.equals) {
                                 return o1.equals(o2);
                             }
                             else {
                                 return o1 === o2;
                             } })(s, "S\u00ec") ? "true" : "false");
-                            let label = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.LABEL, s, "custom-control-label");
+                            let label = js.HTMLUtils.createLabel(s, "custom-control-label", s);
                             input.id = s;
-                            $(input).attr("name", "radio");
-                            $(label).attr("for", input.id);
                             $(div).append(input, label);
                             $(this.inputDiv).append(div);
                         }

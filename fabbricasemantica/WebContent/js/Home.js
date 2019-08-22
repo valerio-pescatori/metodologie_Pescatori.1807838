@@ -1,6 +1,13 @@
 /* Generated from Java with JSweet 2.3.0-SNAPSHOT - http://www.jsweet.org */
 var js;
 (function (js) {
+    /**
+     * Pagina Home
+     *
+     * @author Valerio
+     * @extends js.PageWithForm
+     * @class
+     */
     class Home extends js.PageWithForm {
         constructor() {
             super(Home.TITLE, "");
@@ -19,10 +26,10 @@ var js;
             })(userSpan));
             let logoutNav = document.createElement("li");
             logoutNav.className = "nav-item";
-            let logoutLink = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.ANCHOR, "nav-link", "logout.jsp", "Logout");
+            let logoutLink = js.HTMLUtils.createAnchor("nav-link", "logout.jsp", "Logout");
             let home = document.createElement("li");
             home.className = "nav-item active";
-            let homeLink = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.ANCHOR, "nav-link", "home.html", "Home");
+            let homeLink = js.HTMLUtils.createAnchor("nav-link", "home.html", "Home");
             $(logoutNav).append(logoutLink);
             $(home).append(homeLink);
             $(this.navbarNav).append(home, logoutNav, userSpan);
@@ -31,28 +38,16 @@ var js;
             let startImg = document.createElement("img");
             startImg.className = "float-right";
             startImg.src = "start.svg";
-            startImg.onerror = ((startImg) => {
-                return (x) => {
-                    startImg.src = "start.png";
-                    return null;
-                };
-            })(startImg);
             let logout = document.createElement("a");
             logout.href = "/fabbricasemantica/logout.jsp";
             let logoutImg = document.createElement("img");
             logoutImg.className = "float-left";
             logoutImg.src = "logout.svg";
-            logoutImg.onerror = ((logoutImg) => {
-                return (x) => {
-                    logoutImg.src = "start.png";
-                    return null;
-                };
-            })(logoutImg);
             $(start).append(startImg);
             $(logout).append(logoutImg);
-            let rowDiv = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "row");
-            let startCol = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "col-3");
-            let logoutCol = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "col-3");
+            let rowDiv = js.HTMLUtils.createDiv("row");
+            let startCol = js.HTMLUtils.createDiv("col-3");
+            let logoutCol = js.HTMLUtils.createDiv("col-3");
             this.form.hidden = true;
             $(startCol).append(start);
             $(logoutCol).append(logout);
@@ -63,6 +58,9 @@ var js;
             let page = new Home();
         }
     }
+    /**
+     * titolo della pagina
+     */
     Home.TITLE = "Home";
     js.Home = Home;
     Home["__class"] = "js.Home";

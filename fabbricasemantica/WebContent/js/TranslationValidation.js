@@ -11,26 +11,22 @@ var js;
                 if (json["translations"] != null && (json["translations"] instanceof Array))
                     translations = (json["translations"]);
                 let translN = 0;
-                for (let index126 = 0; index126 < translations.length; index126++) {
-                    let s = translations[index126];
+                for (let index128 = 0; index128 < translations.length; index128++) {
+                    let s = translations[index128];
                     {
-                        let div = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "custom-control custom-checkbox");
-                        let input = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.CHECKBOX, "custom-control-input", "check");
-                        let label = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.LABEL, s, "custom-control-label");
+                        let div = js.HTMLUtils.createDiv("custom-control custom-checkbox");
+                        let input = js.HTMLUtils.createInput("custom-control-input", "checkbox", "", "check", s);
+                        let label = js.HTMLUtils.createLabel(s, "custom-control-label", "box" + translN);
                         input.id = "box" + translN;
-                        input.value = s;
-                        $(label).attr("for", "box" + translN);
                         $(div).append(input, label);
                         $(this.inputDiv).append(div);
                         translN++;
                     }
                 }
-                let div = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "custom-control custom-checkbox");
-                let input = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.CHECKBOX, "custom-control-input", "check");
-                let label = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.LABEL, "Nessuna delle precedenti", "custom-control-label");
+                let div = js.HTMLUtils.createDiv("custom-control custom-checkbox");
+                let input = js.HTMLUtils.createInput("custom-control-input", "checkbox", "", "check", "Nessuna delle precedenti");
+                let label = js.HTMLUtils.createLabel("Nessuna delle precedenti", "custom-control-label", "box" + translN);
                 input.id = "box" + translN;
-                input.value = "Nessuna delle precedenti";
-                $(label).attr("for", "box" + translN);
                 $(div).append(input, label);
                 $(this.inputDiv).append(div);
                 let word = (json["word"]);

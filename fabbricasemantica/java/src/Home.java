@@ -3,41 +3,58 @@ package js;
 import static def.dom.Globals.document;
 import static def.dom.Globals.window;
 import static def.jquery.Globals.$;
-import static js.HTMLUtils.createElement;
+import static js.HTMLUtils.createAnchor;
+import static js.HTMLUtils.createDiv;
 import static js.HTMLUtils.randomPage;
 
 import def.dom.HTMLAnchorElement;
-import def.dom.HTMLElement;
+import def.dom.HTMLDivElement;
 import def.dom.HTMLImageElement;
 import def.dom.HTMLLIElement;
 import def.dom.HTMLSpanElement;
 import def.jquery.JQueryXHR;
-import js.PageWithForm;
-import js.HTMLUtils.HTMLTypes;
 import jsweet.util.StringTypes;
 
+/**
+ * Pagina Home
+ * 
+ * @author Valerio
+ *
+ */
 public class Home extends PageWithForm
 {
+	/**
+	 * titolo della pagina
+	 */
 	public static final String TITLE = "Home";
+	/**
+	 * username dell'utente loggato
+	 */
 	private String username;
-	
+
+	/**
+	 * Viene creata la pagina comprendente un un bottone di start che reindirizza ad
+	 * un task random e un bottone di logout
+	 */
 	protected Home()
 	{
 		super(TITLE, "");
 		HTMLSpanElement userSpan = document.createElement(StringTypes.span);
 		userSpan.className = "navbar-text";
-		$.get("/fabbricasemantica/isLoggedIn.jsp", (Object result, String a, JQueryXHR cx) -> {
+		$.get("/fabbricasemantica/isLoggedIn.jsp", (Object result, String a, JQueryXHR cx) ->
+		{
 			username = (String) result;
-			userSpan.textContent = "Welcome, "+ username+"!";
-			if (username == "false") window.location.href = "/fabbricasemantica/login.html";
+			userSpan.textContent = "Welcome, " + username + "!";
+			if (username == "false")
+				window.location.href = "/fabbricasemantica/login.html";
 			return null;
 		});
 		HTMLLIElement logoutNav = document.createElement(StringTypes.li);
 		logoutNav.className = "nav-item";
-		HTMLElement logoutLink = createElement(HTMLTypes.ANCHOR, "nav-link", "logout.jsp", "Logout");
+		HTMLAnchorElement logoutLink = createAnchor("nav-link", "logout.jsp", "Logout");
 		HTMLLIElement home = document.createElement(StringTypes.li);
 		home.className = "nav-item active";
-		HTMLElement homeLink = createElement(HTMLTypes.ANCHOR, "nav-link", "home.html", "Home");
+		HTMLAnchorElement homeLink = createAnchor("nav-link", "home.html", "Home");
 		$(logoutNav).append(logoutLink);
 		$(home).append(homeLink);
 		$(this.navbarNav).append(home, logoutNav, userSpan);
@@ -46,32 +63,22 @@ public class Home extends PageWithForm
 		HTMLImageElement startImg = document.createElement(StringTypes.img);
 		startImg.className = "float-right";
 		startImg.src = "start.svg";
-		startImg.onerror = (x) ->
-		{
-			startImg.src = "start.png";
-			return null;
-		};
 		HTMLAnchorElement logout = document.createElement(StringTypes.a);
 		logout.href = "/fabbricasemantica/logout.jsp";
 		HTMLImageElement logoutImg = document.createElement(StringTypes.img);
 		logoutImg.className = "float-left";
 		logoutImg.src = "logout.svg";
-		logoutImg.onerror = (x) ->
-		{
-			logoutImg.src = "start.png";
-			return null;
-		};
 		$(start).append(startImg);
 		$(logout).append(logoutImg);
-		HTMLElement rowDiv = createElement(HTMLTypes.DIV, "row");
-		HTMLElement startCol = createElement(HTMLTypes.DIV, "col-3");
-		HTMLElement logoutCol = createElement(HTMLTypes.DIV, "col-3");
+		HTMLDivElement rowDiv = createDiv("row");
+		HTMLDivElement startCol = createDiv("col-3");
+		HTMLDivElement logoutCol = createDiv("col-3");
 		this.form.hidden = true;
+
 		$(startCol).append(start);
 		$(logoutCol).append(logout);
 		$(rowDiv).append(startCol, logoutCol);
 		$(this.container).append(rowDiv);
-		/*if(this.form.baseURI.endsWith("?welcomeback")) window.alert("Bentornato!");*/
 	}
 
 	public static void main(String[] args)

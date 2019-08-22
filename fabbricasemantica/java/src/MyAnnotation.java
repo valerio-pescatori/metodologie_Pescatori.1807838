@@ -1,15 +1,14 @@
 package js;
 
-import static def.jquery.Globals.$;
 import static def.dom.Globals.document;
-import static js.HTMLUtils.createElement;
+import static def.jquery.Globals.$;
+import static js.HTMLUtils.createDiv;
 
 import java.util.ArrayList;
 
-import def.dom.HTMLElement;
+import def.dom.HTMLDivElement;
 import def.jquery.JQueryXHR;
 import def.js.JSON;
-import js.HTMLUtils.HTMLTypes;
 
 public class MyAnnotation extends AnnotationBasePage
 {
@@ -35,10 +34,9 @@ public class MyAnnotation extends AnnotationBasePage
 			}
 			while (words.size() > 0)
 			{
-				HTMLElement row = createElement(HTMLTypes.DIV,
-						"row text-center justify-content-around text-light font-weight-bolder");
+				HTMLDivElement row = createDiv("row text-center justify-content-around text-light font-weight-bolder");
 				row.setAttribute("style", "margin: 60px 0");
-				HTMLElement word = createElement(HTMLTypes.DIV, "col-3 py-3 bg-primary shadow");
+				HTMLDivElement word = createDiv("col-3 py-3 bg-primary shadow");
 				String w = words.remove((int) (Math.random() * words.size()));
 				$(word).html(w);
 				word.setAttribute("style", "border-radius:10px");
@@ -46,7 +44,7 @@ public class MyAnnotation extends AnnotationBasePage
 				word.id = w;
 				word.ondragstart = (x) -> x.dataTransfer.setData("text", $(x.target).attr("id"));
 				String t = translations.remove((int) (Math.random() * translations.size()));
-				HTMLElement translation = createElement(HTMLTypes.DIV, "col-3 py-3 bg-primary shadow");
+				HTMLDivElement translation = createDiv("col-3 py-3 bg-primary shadow");
 				$(translation).html(t);
 				translation.id = t;
 				translation.ondragover = (x) ->
@@ -59,11 +57,11 @@ public class MyAnnotation extends AnnotationBasePage
 					x.preventDefault();
 					String dropped = x.dataTransfer.getData("text");
 					String targetId = $(x.target).attr("id");
-					if(!wordInput.value.contains(targetId))
+					if (!wordInput.value.contains(targetId))
 					{
 						$(document.getElementById(dropped)).fadeOut("slow");
 						$(x.target).append(" - " + dropped);
-						wordInput.value +=  targetId + " , " + dropped + ",";
+						wordInput.value += targetId + " , " + dropped + ",";
 					}
 					return null;
 				};

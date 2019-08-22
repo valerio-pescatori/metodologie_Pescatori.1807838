@@ -1,15 +1,17 @@
 package js;
 
 import static def.jquery.Globals.$;
-import static js.HTMLUtils.createElement;
+import static js.HTMLUtils.createDiv;
+import static js.HTMLUtils.createInput;
+import static js.HTMLUtils.createLabel;
 
 import java.util.ArrayList;
 
-import def.dom.HTMLElement;
+import def.dom.HTMLDivElement;
 import def.dom.HTMLInputElement;
+import def.dom.HTMLLabelElement;
 import def.jquery.JQueryXHR;
 import def.js.JSON;
-import js.HTMLUtils.HTMLTypes;
 
 public class SenseAnnotation extends AnnotationBasePage
 {
@@ -31,12 +33,10 @@ public class SenseAnnotation extends AnnotationBasePage
 			int senseN = 0;
 			for (String s : senses)
 			{
-				HTMLElement div = createElement(HTMLTypes.DIV, "custom-control custom-checkbox");
-				HTMLInputElement input = (HTMLInputElement)createElement(HTMLTypes.CHECKBOX, "custom-control-input", "check");
-				HTMLElement label = createElement(HTMLTypes.LABEL, s, "custom-control-label");
+				HTMLDivElement div = createDiv("custom-control custom-checkbox");
+				HTMLInputElement input = createInput("custom-control-input", "checkbox", "", "check", s);
+				HTMLLabelElement label = createLabel(s, "custom-control-label", "box"+senseN);
 				input.id = "box"+senseN;
-				input.value = s;
-				$(label).attr("for", "box"+senseN);
 				$(div).append(input, label);
 				$(this.inputDiv).append(div);
 				senseN++;

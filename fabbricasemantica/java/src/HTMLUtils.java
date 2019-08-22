@@ -1,116 +1,88 @@
 package js;
 
 import static def.dom.Globals.document;
-import static def.jquery.Globals.$;
 
 import def.dom.HTMLAnchorElement;
+import def.dom.HTMLDivElement;
 import def.dom.HTMLElement;
 import def.dom.HTMLInputElement;
-import def.dom.HTMLTextAreaElement;
+import def.dom.HTMLLabelElement;
+import jsweet.util.StringTypes;
 
+/**
+ * Classe con metodi statici utili alla creazione di oggetti {@link HTMLElement}
+ * 
+ * @author Valerio
+ *
+ */
 public class HTMLUtils
 {
-	public enum HTMLTypes
+
+	public static HTMLLabelElement createLabel(String textContent)
 	{
-		LABEL("label"), ANCHOR("a"), TEXTINPUT("input"), INPUTBUTTON("input"), CHECKBOX("input"), DIV("div"),
-		TEXTAREA("textarea");
-
-		private String stringType;
-
-		HTMLTypes(String stringType)
-		{
-			this.stringType = stringType;
-		}
-
-		public String getStringType()
-		{
-			return stringType;
-		}
+		return createLabel(textContent, "", "");
 	}
 
-	/*
-	 * LABEL: textContent, className
-	 * 
-	 * ANCHOR: className, href, textContent
-	 * 
-	 * TEXTINPUT: className, type, placeholder, name
-	 * 
-	 * INPUTBUTTON: className, type, value
-	 * 
-	 * CHECKBOX: className, name
-	 * 
-	 * DIV: className;
-	 * 
-	 * TEXTAREA: className, rows, name
-	 */
-	public static HTMLElement createElement(HTMLTypes type, String... values)
+	public static HTMLLabelElement createLabel(String textContent, String className)
 	{
-		HTMLElement element = document.createElement(type.getStringType());
-		switch (type)
-		{
-		case LABEL:
-			element.textContent = values[0];
-			if (values.length > 1)
-			{
-				element.className = values[1];
-			}
-			break;
+		return createLabel(textContent, className, "");
+	}
 
-		case ANCHOR:
-			HTMLAnchorElement aElement = (HTMLAnchorElement) element;
-			aElement.className = values[0];
-			aElement.href = values[1];
-			aElement.textContent = values[2];
-			return aElement;
-
-		// vale sia per email che per password
-		case TEXTINPUT:
-			HTMLInputElement eElement = (HTMLInputElement) element;
-			eElement.className = values[0];
-			eElement.type = values[1];
-			eElement.placeholder = values[2];
-			eElement.name = values[3];
-			return eElement;
-
-		// vale sia per reset che per submit
-		case INPUTBUTTON:
-			HTMLInputElement bElement = (HTMLInputElement) element;
-			bElement.className = values[0];
-			bElement.type = values[1];
-			bElement.value = values[2];
-			return bElement;
-
-		case CHECKBOX:
-			HTMLInputElement checkElement = (HTMLInputElement) element;
-			checkElement.className = values[0];
-			checkElement.name = values[1];
-			checkElement.type = "checkbox";
-
-			return checkElement;
-
-		case DIV:
-			HTMLInputElement divElement = (HTMLInputElement) element;
-			divElement.className = values[0];
-			return divElement;
-
-		case TEXTAREA:
-			HTMLTextAreaElement textElement = (HTMLTextAreaElement) element;
-			textElement.className = values[0];
-			textElement.rows = Double.parseDouble(values[1]);
-			textElement.name = values[2];
-			return textElement;
-
-		default:
-			break;
-		}
+	public static HTMLLabelElement createLabel(String textContent, String className, String isFor)
+	{
+		HTMLLabelElement element = document.createElement(StringTypes.label);
+		element.textContent = textContent;
+		element.className = className;
+		element.setAttribute("for", isFor);
 		return element;
 	}
 
+	public static HTMLAnchorElement createAnchor(String className, String href, String textContent)
+	{
+		HTMLAnchorElement element = document.createElement(StringTypes.a);
+		element.className = className;
+		element.href = href;
+		element.textContent = textContent;
+		return element;
+	}
+
+	public static HTMLInputElement createInput(String className, String type, String placeholder, String name)
+	{
+		return createInput(className, type, placeholder, name, "");
+	}
+
+	public static HTMLInputElement createInput(String className, String type, String value)
+	{
+		return createInput(className, type, "", "", value);
+	}
+
+	public static HTMLInputElement createInput(String className, String type, String placeholder, String name,
+			String value)
+	{
+		HTMLInputElement element = document.createElement(StringTypes.input);
+		element.type = type;
+		element.className = className;
+		element.name = name;
+		element.value = value;
+		element.placeholder = placeholder;
+		return element;
+	}
+
+	public static HTMLDivElement createDiv(String className)
+	{
+		HTMLDivElement element = document.createElement(StringTypes.div);
+		element.className = className;
+		return element;
+	}
+
+	/**
+	 * metodo che ritorna l'url di uno {@link StandardTask} in maniera randomica.
+	 * 
+	 * @return l'url di uno {@link StandardTask} random.
+	 */
 	public static String randomPage()
 	{
 		StandardTask[] values = StandardTask.values();
 		return values[(int) (Math.random() * (values.length))].getUrl();
 	}
-	
-	public static void attachBtn(HTMLElement element, HTMLElement toAttach) { $(element).append(toAttach); }
 }

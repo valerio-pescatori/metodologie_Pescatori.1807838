@@ -2,7 +2,7 @@
     <wb-module deploy-name="fabbricasemantica">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="fabbricasemantica"/>
         <property name="java-output-path" value="/fabbricasemantica/build/classes"/>
+        <property name="context-root" value="fabbricasemantica"/>
     </wb-module>
 </project-modules>

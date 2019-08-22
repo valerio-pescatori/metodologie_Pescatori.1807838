@@ -14,12 +14,10 @@ var js;
                 for (let index121 = 0; index121 < senses.length; index121++) {
                     let s = senses[index121];
                     {
-                        let div = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "custom-control custom-checkbox");
-                        let input = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.CHECKBOX, "custom-control-input", "check");
-                        let label = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.LABEL, s, "custom-control-label");
+                        let div = js.HTMLUtils.createDiv("custom-control custom-checkbox");
+                        let input = js.HTMLUtils.createInput("custom-control-input", "checkbox", "", "check", s);
+                        let label = js.HTMLUtils.createLabel(s, "custom-control-label", "box" + senseN);
                         input.id = "box" + senseN;
-                        input.value = s;
-                        $(label).attr("for", "box" + senseN);
                         $(div).append(input, label);
                         $(this.inputDiv).append(div);
                         senseN++;

@@ -1,56 +1,84 @@
 /* Generated from Java with JSweet 2.3.0-SNAPSHOT - http://www.jsweet.org */
 var js;
 (function (js) {
+    /**
+     * Classe con metodi statici utili alla creazione di oggetti {@link HTMLElement}
+     *
+     * @author Valerio
+     * @class
+     */
     class HTMLUtils {
-        static createElement(type, ...values) {
-            let element = document.createElement(js.HTMLUtils.HTMLTypes["_$wrappers"][type].getStringType());
-            switch ((type)) {
-                case js.HTMLUtils.HTMLTypes.LABEL:
-                    element.textContent = values[0];
-                    if (values.length > 1) {
-                        element.className = values[1];
-                    }
-                    break;
-                case js.HTMLUtils.HTMLTypes.ANCHOR:
-                    let aElement = element;
-                    aElement.className = values[0];
-                    aElement.href = values[1];
-                    aElement.textContent = values[2];
-                    return aElement;
-                case js.HTMLUtils.HTMLTypes.TEXTINPUT:
-                    let eElement = element;
-                    eElement.className = values[0];
-                    eElement.type = values[1];
-                    eElement.placeholder = values[2];
-                    eElement.name = values[3];
-                    return eElement;
-                case js.HTMLUtils.HTMLTypes.INPUTBUTTON:
-                    let bElement = element;
-                    bElement.className = values[0];
-                    bElement.type = values[1];
-                    bElement.value = values[2];
-                    return bElement;
-                case js.HTMLUtils.HTMLTypes.CHECKBOX:
-                    let checkElement = element;
-                    checkElement.className = values[0];
-                    checkElement.name = values[1];
-                    checkElement.type = "checkbox";
-                    return checkElement;
-                case js.HTMLUtils.HTMLTypes.DIV:
-                    let divElement = element;
-                    divElement.className = values[0];
-                    return divElement;
-                case js.HTMLUtils.HTMLTypes.TEXTAREA:
-                    let textElement = element;
-                    textElement.className = values[0];
-                    textElement.rows = parseFloat(values[1]);
-                    textElement.name = values[2];
-                    return textElement;
-                default:
-                    break;
-            }
+        static createLabel$java_lang_String(textContent) {
+            return HTMLUtils.createLabel$java_lang_String$java_lang_String$java_lang_String(textContent, "", "");
+        }
+        static createLabel$java_lang_String$java_lang_String(textContent, className) {
+            return HTMLUtils.createLabel$java_lang_String$java_lang_String$java_lang_String(textContent, className, "");
+        }
+        static createLabel$java_lang_String$java_lang_String$java_lang_String(textContent, className, isFor) {
+            let element = document.createElement("label");
+            element.textContent = textContent;
+            element.className = className;
+            element.setAttribute("for", isFor);
             return element;
         }
+        static createLabel(textContent, className, isFor) {
+            if (((typeof textContent === 'string') || textContent === null) && ((typeof className === 'string') || className === null) && ((typeof isFor === 'string') || isFor === null)) {
+                return js.HTMLUtils.createLabel$java_lang_String$java_lang_String$java_lang_String(textContent, className, isFor);
+            }
+            else if (((typeof textContent === 'string') || textContent === null) && ((typeof className === 'string') || className === null) && isFor === undefined) {
+                return js.HTMLUtils.createLabel$java_lang_String$java_lang_String(textContent, className);
+            }
+            else if (((typeof textContent === 'string') || textContent === null) && className === undefined && isFor === undefined) {
+                return js.HTMLUtils.createLabel$java_lang_String(textContent);
+            }
+            else
+                throw new Error('invalid overload');
+        }
+        static createAnchor(className, href, textContent) {
+            let element = document.createElement("a");
+            element.className = className;
+            element.href = href;
+            element.textContent = textContent;
+            return element;
+        }
+        static createInput$java_lang_String$java_lang_String$java_lang_String$java_lang_String(className, type, placeholder, name) {
+            return HTMLUtils.createInput$java_lang_String$java_lang_String$java_lang_String$java_lang_String$java_lang_String(className, type, placeholder, name, "");
+        }
+        static createInput$java_lang_String$java_lang_String$java_lang_String(className, type, value) {
+            return HTMLUtils.createInput$java_lang_String$java_lang_String$java_lang_String$java_lang_String$java_lang_String(className, type, "", "", value);
+        }
+        static createInput$java_lang_String$java_lang_String$java_lang_String$java_lang_String$java_lang_String(className, type, placeholder, name, value) {
+            let element = document.createElement("input");
+            element.type = type;
+            element.className = className;
+            element.name = name;
+            element.value = value;
+            element.placeholder = placeholder;
+            return element;
+        }
+        static createInput(className, type, placeholder, name, value) {
+            if (((typeof className === 'string') || className === null) && ((typeof type === 'string') || type === null) && ((typeof placeholder === 'string') || placeholder === null) && ((typeof name === 'string') || name === null) && ((typeof value === 'string') || value === null)) {
+                return js.HTMLUtils.createInput$java_lang_String$java_lang_String$java_lang_String$java_lang_String$java_lang_String(className, type, placeholder, name, value);
+            }
+            else if (((typeof className === 'string') || className === null) && ((typeof type === 'string') || type === null) && ((typeof placeholder === 'string') || placeholder === null) && ((typeof name === 'string') || name === null) && value === undefined) {
+                return js.HTMLUtils.createInput$java_lang_String$java_lang_String$java_lang_String$java_lang_String(className, type, placeholder, name);
+            }
+            else if (((typeof className === 'string') || className === null) && ((typeof type === 'string') || type === null) && ((typeof placeholder === 'string') || placeholder === null) && name === undefined && value === undefined) {
+                return js.HTMLUtils.createInput$java_lang_String$java_lang_String$java_lang_String(className, type, placeholder);
+            }
+            else
+                throw new Error('invalid overload');
+        }
+        static createDiv(className) {
+            let element = document.createElement("div");
+            element.className = className;
+            return element;
+        }
+        /**
+         * metodo che ritorna l'url di uno {@link StandardTask} in maniera randomica.
+         *
+         * @return {string} l'url di uno {@link StandardTask} random.
+         */
         static randomPage() {
             let values = function () { let result = []; for (let val in js.StandardTask) {
                 if (!isNaN(val)) {
@@ -59,41 +87,7 @@ var js;
             } return result; }();
             return js.StandardTask["_$wrappers"][values[((Math.random() * (values.length)) | 0)]].getUrl();
         }
-        static attachBtn(element, toAttach) {
-            $(element).append(toAttach);
-        }
     }
     js.HTMLUtils = HTMLUtils;
     HTMLUtils["__class"] = "js.HTMLUtils";
-    (function (HTMLUtils) {
-        var HTMLTypes;
-        (function (HTMLTypes) {
-            HTMLTypes[HTMLTypes["LABEL"] = 0] = "LABEL";
-            HTMLTypes[HTMLTypes["ANCHOR"] = 1] = "ANCHOR";
-            HTMLTypes[HTMLTypes["TEXTINPUT"] = 2] = "TEXTINPUT";
-            HTMLTypes[HTMLTypes["INPUTBUTTON"] = 3] = "INPUTBUTTON";
-            HTMLTypes[HTMLTypes["CHECKBOX"] = 4] = "CHECKBOX";
-            HTMLTypes[HTMLTypes["DIV"] = 5] = "DIV";
-            HTMLTypes[HTMLTypes["TEXTAREA"] = 6] = "TEXTAREA";
-        })(HTMLTypes = HTMLUtils.HTMLTypes || (HTMLUtils.HTMLTypes = {}));
-        /** @ignore */
-        class HTMLTypes_$WRAPPER {
-            constructor(_$ordinal, _$name, stringType) {
-                this._$ordinal = _$ordinal;
-                this._$name = _$name;
-                if (this.stringType === undefined)
-                    this.stringType = null;
-                this.stringType = stringType;
-            }
-            getStringType() {
-                return this.stringType;
-            }
-            name() { return this._$name; }
-            ordinal() { return this._$ordinal; }
-        }
-        HTMLUtils.HTMLTypes_$WRAPPER = HTMLTypes_$WRAPPER;
-        HTMLTypes["__class"] = "js.HTMLUtils.HTMLTypes";
-        HTMLTypes["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
-        HTMLTypes["_$wrappers"] = [new HTMLTypes_$WRAPPER(0, "LABEL", "label"), new HTMLTypes_$WRAPPER(1, "ANCHOR", "a"), new HTMLTypes_$WRAPPER(2, "TEXTINPUT", "input"), new HTMLTypes_$WRAPPER(3, "INPUTBUTTON", "input"), new HTMLTypes_$WRAPPER(4, "CHECKBOX", "input"), new HTMLTypes_$WRAPPER(5, "DIV", "div"), new HTMLTypes_$WRAPPER(6, "TEXTAREA", "textarea")];
-    })(HTMLUtils = js.HTMLUtils || (js.HTMLUtils = {}));
 })(js || (js = {}));

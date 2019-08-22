@@ -1,14 +1,17 @@
 package js;
 
 import static def.jquery.Globals.$;
-import static js.HTMLUtils.createElement;
+import static js.HTMLUtils.createDiv;
+import static js.HTMLUtils.createInput;
+import static js.HTMLUtils.createLabel;
 
 import java.util.Arrays;
 
-import def.dom.HTMLElement;
+import def.dom.HTMLDivElement;
+import def.dom.HTMLInputElement;
+import def.dom.HTMLLabelElement;
 import def.jquery.JQueryXHR;
 import def.js.JSON;
-import js.HTMLUtils.HTMLTypes;
 
 public class SenseValidation extends AnnotationBasePage
 {
@@ -30,12 +33,10 @@ public class SenseValidation extends AnnotationBasePage
 			this.wordInput.value = word + "," + sense + "," + example;
 			for (String s : Arrays.asList("Sì", "No"))
 			{
-				HTMLElement div = createElement(HTMLTypes.DIV, "custom-control custom-radio");
-				HTMLElement input = createElement(HTMLTypes.INPUTBUTTON, "custom-control-input", "radio", s.equals("Sì")? "true":"false");
-				HTMLElement label = createElement(HTMLTypes.LABEL, s, "custom-control-label");
+				HTMLDivElement div = createDiv("custom-control custom-radio");
+				HTMLInputElement input = createInput("custom-control-input", "radio", "", "radio", s.equals("Sì") ? "true" : "false");
+				HTMLLabelElement label = createLabel(s, "custom-control-label", s);
 				input.id = s;
-				$(input).attr("name", "radio");
-				$(label).attr("for", input.id);
 				$(div).append(input, label);
 				$(inputDiv).append(div);
 			}

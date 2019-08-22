@@ -1,6 +1,13 @@
 /* Generated from Java with JSweet 2.3.0-SNAPSHOT - http://www.jsweet.org */
 var js;
 (function (js) {
+    /**
+     * Classe astratta utilizzabile per creare una semplice pagina HTML con un una
+     * navbar modificabile, un header e un form vuoto.
+     *
+     * @author Valerio
+     * @class
+     */
     class PageWithForm {
         constructor(title, formAction) {
             if (this.container === undefined)
@@ -14,12 +21,13 @@ var js;
             this.form = document.createElement("form");
             this.form.method = "POST";
             this.form.action = formAction;
+            this.form.id = "myForm";
             let heading = document.createElement("h1");
             $(heading).html(title);
-            let jumbo = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "jumbotron");
-            let navbar = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "navbar navbar-expand-sm bg-dark navbar-dark");
-            let containerFluid = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "container-fluid");
-            let navbarHeader = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "navbar-header");
+            let jumbo = js.HTMLUtils.createDiv("jumbotron");
+            let navbar = js.HTMLUtils.createDiv("navbar navbar-expand-sm bg-dark navbar-dark");
+            let containerFluid = js.HTMLUtils.createDiv("container-fluid");
+            let navbarHeader = js.HTMLUtils.createDiv("navbar-header");
             let navTitle = document.createElement("li");
             navTitle.className = "navbar-brand";
             navTitle.textContent = "Fabbrica Semantica";

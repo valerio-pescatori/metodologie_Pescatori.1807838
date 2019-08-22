@@ -2,9 +2,9 @@
 var js;
 (function (js) {
     /**
-     * Pagina base che comprende un form con due input elements: il primo di tipo
-     * email, il secondo di tipo password, provvede inoltre 3 pulsanti: submit,
-     * reset e un link settabile.
+     * Pagina che comprende un form con due input: il primo di tipo email, il
+     * secondo di tipo password. Provvede inoltre 2 pulsanti: submit, reset e un
+     * link settabile.
      *
      * @author Valerio
      * @extends js.PageWithForm
@@ -24,8 +24,8 @@ var js;
             });
             let login = document.createElement("li");
             let signup = document.createElement("li");
-            let loginLink = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.ANCHOR, "nav-link", "login.html", "Login");
-            let signupLink = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.ANCHOR, "nav-link", "signup.html", "Sign Up");
+            let loginLink = js.HTMLUtils.createAnchor("nav-link", "login.html", "Login");
+            let signupLink = js.HTMLUtils.createAnchor("nav-link", "signup.html", "Sign Up");
             $(login).append(loginLink);
             $(signup).append(signupLink);
             $(this.navbarNav).append(login, signup);
@@ -42,18 +42,26 @@ var js;
                 login.className = "nav-item";
                 signup.className = "nav-item  active";
             }
-            let emailLabel = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.LABEL, "Email:");
-            let emailInput = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.TEXTINPUT, "form-control", "email", "Inserire l\'email qui...", "email");
-            let passwordLabel = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.LABEL, "Password:");
-            let passwordInput = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.TEXTINPUT, "form-control", "password", "Inserire la password qui...", "password");
-            this.inputDiv = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "form-group");
+            let emailLabel = js.HTMLUtils.createLabel("Email:");
+            let emailInput = js.HTMLUtils.createInput("form-control", "email", "Inserire l\'email qui...", "email");
+            $(emailInput).attr("required", "");
+            let passwordLabel = js.HTMLUtils.createLabel("Password:");
+            let passwordInput = js.HTMLUtils.createInput("form-control", "password", "Inserire la password qui...", "password");
+            $(passwordInput).attr("required", "");
+            this.inputDiv = js.HTMLUtils.createDiv("form-group");
             $(this.inputDiv).append(emailLabel, emailInput, passwordLabel, passwordInput);
             $(this.form).append(this.inputDiv);
-            let submitBtn = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.INPUTBUTTON, "btn btn-primary", "submit", "Submit");
-            let resetBtn = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.INPUTBUTTON, "btn btn-secondary", "reset", "Reset");
-            this.btnRow = js.HTMLUtils.createElement(js.HTMLUtils.HTMLTypes.DIV, "btn-group");
+            let submitBtn = js.HTMLUtils.createInput("btn btn-primary", "submit", "Submit");
+            let resetBtn = js.HTMLUtils.createInput("btn btn-secondary", "reset", "Reset");
+            this.btnRow = js.HTMLUtils.createDiv("btn-group");
             $(this.btnRow).append(submitBtn, resetBtn);
         }
+        /**
+         * Questo metodo appende il {@code div} contente i bottoni al {@code form},
+         * questo fa si che si possa ereditare questa classe per estendere e modificare
+         * il contenuto della pagina a proprio piacimento, e solo alla fine appendere i
+         * bottoni.
+         */
         attachBtn() {
             $(this.form).append(this.btnRow);
         }
