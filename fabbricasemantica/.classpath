@@ -8,7 +8,7 @@
 			<attribute name="owner.project.facets" value="jst.web;#system#"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Valerio/git/metodologie2019_progetto/fabbricasemantica/WebContent/WEB-INF/lib/sqlite-jdbc-3.27.2.1.jar">
+	<classpathentry kind="lib" path="C:/Users/Valerio/eclipse-workspace/metodologie_Pescatori.1807838/fabbricasemantica/WebContent/WEB-INF/lib/sqlite-jdbc-3.27.2.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
