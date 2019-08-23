@@ -1,6 +1,7 @@
 package js;
 
 import static def.dom.Globals.document;
+import static def.dom.Globals.window;
 import static def.jquery.Globals.$;
 import static js.HTMLUtils.createDiv;
 
@@ -51,6 +52,8 @@ public abstract class PageWithForm
 		form.method = "POST";
 		form.action = formAction;
 		form.id = "myForm";
+		form.className = "needs-validation";
+		form.noValidate = true;
 		HTMLHeadingElement heading = document.createElement(StringTypes.h1);
 		$(heading).html(title);
 		HTMLDivElement jumbo = createDiv("jumbotron");
@@ -69,6 +72,19 @@ public abstract class PageWithForm
 		$(jumbo).append(heading);
 		$(container).append(form);
 		$("body").append(navbar, jumbo, container);
+		//event listener per evitare il submit con campi non validi
+		window.addEventListener("load", (x) ->
+		{
+			form.addEventListener("submit", (y) ->
+			{
+				if (!form.checkValidity())
+				{
+					y.preventDefault();
+					y.stopPropagation();
+				}
+				form.classList.add("was-validated");
+			});
+		});
 	}
 
 }

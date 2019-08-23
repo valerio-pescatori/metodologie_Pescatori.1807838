@@ -8,12 +8,12 @@ import static js.HTMLUtils.createLabel;
 
 import java.util.Arrays;
 
+import def.dom.HTMLButtonElement;
 import def.dom.HTMLDivElement;
 import def.dom.HTMLInputElement;
 import def.dom.HTMLLabelElement;
 import def.dom.HTMLOptionElement;
 import def.dom.HTMLSelectElement;
-import def.jquery.JQuery;
 import jsweet.util.StringTypes;
 
 /**
@@ -24,7 +24,7 @@ import jsweet.util.StringTypes;
  * @author Valerio
  *
  */
-public class Signup extends LoginBasePage
+public class Signup extends LoginBasePage implements Checkboxable
 {
 	/**
 	 * titolo della pagina
@@ -43,10 +43,11 @@ public class Signup extends LoginBasePage
 	private Signup()
 	{
 		super(TITLE, FORM_ACTION);
-		HTMLLabelElement repeatLabel = createLabel("Reinserire la password:");
+		HTMLLabelElement repeatLabel = createLabel("Reinserire la password:", "form-control-plaintext", "passRepeat");
 		HTMLInputElement passRepeat = createInput("form-control", "password", "Reinserire la password qui...",
 				"passRepeat");
-		$(passRepeat).attr("required", "");
+		passRepeat.required = true;
+		passRepeat.id = "passRepeat";
 		HTMLLabelElement langs = createLabel("Lingue parlate come madrelingua:");
 		$(this.inputDiv).append(repeatLabel, passRepeat, langs);
 		int checkN = 0;
@@ -56,7 +57,7 @@ public class Signup extends LoginBasePage
 			HTMLInputElement input = createInput("custom-control-input", "checkbox", "", "check", s);
 			HTMLLabelElement label = createLabel(s, "custom-control-label", "box" + checkN);
 			input.id = "box" + checkN;
-			$(input).attr("required", "");
+			input.required = true;
 			$(div).append(input, label);
 			$(this.inputDiv).append(div);
 			checkN++;
@@ -85,6 +86,7 @@ public class Signup extends LoginBasePage
 		HTMLSelectElement select = document.createElement(StringTypes.select);
 		select.className = "custom-select my-2";
 		select.name = "langs";
+		select.id = "select";
 		for (String s : Arrays.asList("DE", "FR", "PL", "RU", "BG", "RO", "ES", "PT", "CS", "SV"))
 		{
 			HTMLOptionElement option = document.createElement(StringTypes.option);
@@ -102,8 +104,10 @@ public class Signup extends LoginBasePage
 		range.min = "0";
 		range.max = "50";
 		range.step = "10";
+		range.id = "range";
 		HTMLLabelElement rangeLabel = createLabel("A1", "bg-info b-1 text-center text-light");
 		$(rangeLabel).attr("style", "width:100px; border-radius:10px");
+		rangeLabel.id = "rangeLabel";
 		range.onchange = (x) ->
 		{
 			switch (range.value)
@@ -141,23 +145,25 @@ public class Signup extends LoginBasePage
 			}
 			return null;
 		};
-		$(inputDiv).append(select, range, rangeLabel);
+		HTMLButtonElement button = document.createElement(StringTypes.button);
+		button.className = "close";
+		button.type = "button";
+		button.textContent = "\u00D7";
+		button.onclick = (x) ->
+		{
+			select.outerHTML = "";
+			range.outerHTML = "";
+			rangeLabel.outerHTML = "";
+			button.outerHTML = "";
+			return null;
+		};
+		$(inputDiv).append(select, range, rangeLabel, button);
 	}
 
 	public static void main(String[] args)
 	{
-		@SuppressWarnings("unused")
 		Signup page = new Signup();
-		// forzo l'inserimento di almeno una checkbox
-		JQuery checkboxes = $(":checkbox[required]");
-		checkboxes.change((x) ->
-		{
-			if (checkboxes.is(":checked"))
-				checkboxes.removeAttr("required");
-			else
-				checkboxes.attr("required", "");
-			return null;
-		});
+		page.validateCheckboxes();
 	}
 
 }

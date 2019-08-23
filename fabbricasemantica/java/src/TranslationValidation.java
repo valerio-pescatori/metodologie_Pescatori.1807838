@@ -13,7 +13,7 @@ import def.dom.HTMLLabelElement;
 import def.jquery.JQueryXHR;
 import def.js.JSON;
 
-public class TranslationValidation extends AnnotationBasePage
+public class TranslationValidation extends AnnotationBasePage implements Checkboxable
 {
 	public static final String TITLE = "Translation Validation";
 	public static final String FORM_ACTION = "translationValidation.jsp";
@@ -23,11 +23,12 @@ public class TranslationValidation extends AnnotationBasePage
 	private TranslationValidation()
 	{
 		super(TITLE, FORM_ACTION, ANNOTATION_DESCRIPTION);
-		input.hidden = true;
+		this.input.hidden = true;
+		this.input.required = false;
 		$.getJSON(REST_URL, "task=TRANSLATION_VALIDATION", (Object result, String a, JQueryXHR ctx) ->
 		{
 			JSON json = (JSON) result;
-			ArrayList<String> translations = null;
+			ArrayList<String> translations = new ArrayList<>();
 			if (json.$get("translations") instanceof ArrayList<?>)
 				translations = (ArrayList<String>) json.$get("translations");
 			int translN = 0;
@@ -37,6 +38,7 @@ public class TranslationValidation extends AnnotationBasePage
 				HTMLInputElement input = createInput("custom-control-input", "checkbox", "", "check", s);
 				HTMLLabelElement label = createLabel(s, "custom-control-label", "box" + translN);
 				input.id = "box" + translN;
+				input.required = true;
 				$(div).append(input, label);
 				$(this.inputDiv).append(div);
 				translN++;
@@ -46,6 +48,7 @@ public class TranslationValidation extends AnnotationBasePage
 					"Nessuna delle precedenti");
 			HTMLLabelElement label = createLabel("Nessuna delle precedenti", "custom-control-label", "box" + translN);
 			input.id = "box" + translN;
+			input.required = true;
 			$(div).append(input, label);
 			$(this.inputDiv).append(div);
 			String word = (String) json.$get("word");
@@ -58,7 +61,8 @@ public class TranslationValidation extends AnnotationBasePage
 
 	public static void main(String[] args)
 	{
-		@SuppressWarnings("unused")
 		TranslationValidation page = new TranslationValidation();
+		page.validateCheckboxes();
+
 	}
 }

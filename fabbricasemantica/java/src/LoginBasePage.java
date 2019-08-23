@@ -52,7 +52,7 @@ public abstract class LoginBasePage extends PageWithForm
 		$.get("/fabbricasemantica/isLoggedIn.jsp", (Object result, String a, JQueryXHR cx) ->
 		{
 			if ((String) result != "false")
-				window.location.href = "/fabbricasemantica/home.html?welcomeback";
+				window.location.href = "/fabbricasemantica/home.html";
 			return null;
 		});
 		// aggiungo link alla navbar
@@ -73,13 +73,15 @@ public abstract class LoginBasePage extends PageWithForm
 			signup.className = "nav-item  active";
 		}
 		// creo i due input e i due bottoni
-		HTMLLabelElement emailLabel = createLabel("Email:");
+		HTMLLabelElement emailLabel = createLabel("Email:", "form-control-plaintext", "email");
 		HTMLInputElement emailInput = createInput("form-control", "email", "Inserire l'email qui...", "email");
-		$(emailInput).attr("required", "");
-		HTMLLabelElement passwordLabel = createLabel("Password:");
+		emailInput.required = true;
+		emailInput.id = "email";
+		HTMLLabelElement passwordLabel = createLabel("Password:", "form-control-plaintext", "password");
 		HTMLInputElement passwordInput = createInput("form-control", "password", "Inserire la password qui...",
 				"password");
-		$(passwordInput).attr("required", "");
+		passwordInput.required = true;
+		passwordInput.id = "password";
 		// creo il div per gli input e appendo
 		this.inputDiv = createDiv("form-group");
 		$(this.inputDiv).append(emailLabel, emailInput, passwordLabel, passwordInput);

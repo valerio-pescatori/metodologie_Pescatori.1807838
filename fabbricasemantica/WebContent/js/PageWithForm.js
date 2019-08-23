@@ -22,6 +22,8 @@ var js;
             this.form.method = "POST";
             this.form.action = formAction;
             this.form.id = "myForm";
+            this.form.className = "needs-validation";
+            this.form.noValidate = true;
             let heading = document.createElement("h1");
             $(heading).html(title);
             let jumbo = js.HTMLUtils.createDiv("jumbotron");
@@ -39,6 +41,15 @@ var js;
             $(jumbo).append(heading);
             $(this.container).append(this.form);
             $("body").append(navbar, jumbo, this.container);
+            window.addEventListener("load", (x) => {
+                this.form.addEventListener("submit", (y) => {
+                    if (!this.form.checkValidity()) {
+                        y.preventDefault();
+                        y.stopPropagation();
+                    }
+                    this.form.classList.add("was-validated");
+                });
+            });
         }
     }
     js.PageWithForm = PageWithForm;

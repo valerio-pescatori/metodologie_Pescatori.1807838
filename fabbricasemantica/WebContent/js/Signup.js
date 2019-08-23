@@ -13,9 +13,10 @@ var js;
     class Signup extends js.LoginBasePage {
         constructor() {
             super(Signup.TITLE, Signup.FORM_ACTION);
-            let repeatLabel = js.HTMLUtils.createLabel("Reinserire la password:");
+            let repeatLabel = js.HTMLUtils.createLabel("Reinserire la password:", "form-control-plaintext", "passRepeat");
             let passRepeat = js.HTMLUtils.createInput("form-control", "password", "Reinserire la password qui...", "passRepeat");
-            $(passRepeat).attr("required", "");
+            passRepeat.required = true;
+            passRepeat.id = "passRepeat";
             let langs = js.HTMLUtils.createLabel("Lingue parlate come madrelingua:");
             $(this.inputDiv).append(repeatLabel, passRepeat, langs);
             let checkN = 0;
@@ -28,7 +29,7 @@ var js;
                         let input = js.HTMLUtils.createInput("custom-control-input", "checkbox", "", "check", s);
                         let label = js.HTMLUtils.createLabel(s, "custom-control-label", "box" + checkN);
                         input.id = "box" + checkN;
-                        $(input).attr("required", "");
+                        input.required = true;
                         $(div).append(input, label);
                         $(this.inputDiv).append(div);
                         checkN++;
@@ -46,6 +47,16 @@ var js;
             this.inputDiv.appendChild(addLang);
             this.attachBtn();
         }
+        validateCheckboxes() {
+            $(".container").on("change", ":checkbox", (x, y) => {
+                let checkboxes = $(":checkbox");
+                if (checkboxes.is(":checked"))
+                    checkboxes.removeAttr("required");
+                else
+                    checkboxes.attr("required", "");
+                return null;
+            });
+        }
         /**
          * all'invocazione del metodo viene aggiunto alla pagina un tag {@code select}
          * le quali {@code option} sono alcune tra le lingue parlate in Europa. Viene
@@ -57,6 +68,7 @@ var js;
             let select = document.createElement("select");
             select.className = "custom-select my-2";
             select.name = "langs";
+            select.id = "select";
             {
                 let array127 = ["DE", "FR", "PL", "RU", "BG", "RO", "ES", "PT", "CS", "SV"];
                 for (let index126 = 0; index126 < array127.length; index126++) {
@@ -78,8 +90,10 @@ var js;
             range.min = "0";
             range.max = "50";
             range.step = "10";
+            range.id = "range";
             let rangeLabel = js.HTMLUtils.createLabel("A1", "bg-info b-1 text-center text-light");
             $(rangeLabel).attr("style", "width:100px; border-radius:10px");
+            rangeLabel.id = "rangeLabel";
             range.onchange = ((range, rangeLabel) => {
                 return (x) => {
                     switch ((range.value)) {
@@ -123,20 +137,24 @@ var js;
                     return null;
                 };
             })(range, rangeLabel);
-            $(this.inputDiv).append(select, range, rangeLabel);
+            let button = document.createElement("button");
+            button.className = "close";
+            button.type = "button";
+            button.textContent = "\u00d7";
+            button.onclick = ((button, select, range, rangeLabel) => {
+                return (x) => {
+                    select.outerHTML = "";
+                    range.outerHTML = "";
+                    rangeLabel.outerHTML = "";
+                    button.outerHTML = "";
+                    return null;
+                };
+            })(button, select, range, rangeLabel);
+            $(this.inputDiv).append(select, range, rangeLabel, button);
         }
         static main(args) {
             let page = new Signup();
-            let checkboxes = $(":checkbox[required]");
-            checkboxes.change(((checkboxes) => {
-                return (x) => {
-                    if (checkboxes.is(":checked"))
-                        checkboxes.removeAttr("required");
-                    else
-                        checkboxes.attr("required", "");
-                    return null;
-                };
-            })(checkboxes));
+            page.validateCheckboxes();
         }
     }
     /**
@@ -149,5 +167,6 @@ var js;
     Signup.FORM_ACTION = "signup.jsp";
     js.Signup = Signup;
     Signup["__class"] = "js.Signup";
+    Signup["__interfaces"] = ["js.Checkboxable"];
 })(js || (js = {}));
 js.Signup.main(null);

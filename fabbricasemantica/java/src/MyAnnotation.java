@@ -25,8 +25,8 @@ public class MyAnnotation extends AnnotationBasePage
 		$.getJSON(REST_URL, "task=MY_ANNOTATION", (Object result, String a, JQueryXHR ctx) ->
 		{
 			JSON json = (JSON) result;
-			ArrayList<String> translations = null;
-			ArrayList<String> words = null;
+			ArrayList<String> translations = new ArrayList<>();
+			ArrayList<String> words = new ArrayList<>();
 			if (json.$get("translations") instanceof ArrayList<?> && json.$get("words") instanceof ArrayList<?>)
 			{
 				words = (ArrayList<String>) json.$get("words");

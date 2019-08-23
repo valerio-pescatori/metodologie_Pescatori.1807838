@@ -13,7 +13,7 @@ import def.dom.HTMLLabelElement;
 import def.jquery.JQueryXHR;
 import def.js.JSON;
 
-public class SenseAnnotation extends AnnotationBasePage
+public class SenseAnnotation extends AnnotationBasePage implements Checkboxable
 {
 	public static final String TITLE = "Sense Annotation";
 	public static final String FORM_ACTION = "senseAnnotation.jsp";
@@ -24,10 +24,11 @@ public class SenseAnnotation extends AnnotationBasePage
 	{
 		super(TITLE, FORM_ACTION, ANNOTATION_DESCRIPTION);
 		input.hidden = true;
+		input.required = false;
 		$.getJSON(REST_URL, "task=SENSE_ANNOTATION", (Object result, String a, JQueryXHR ctx) ->
 		{
 			JSON json = (JSON) result;
-			ArrayList<String> senses = null;
+			ArrayList<String> senses = new ArrayList<>();
 			if (json.$get("senses") instanceof ArrayList<?>)
 				senses = (ArrayList<String>) json.$get("senses");
 			int senseN = 0;
@@ -35,13 +36,14 @@ public class SenseAnnotation extends AnnotationBasePage
 			{
 				HTMLDivElement div = createDiv("custom-control custom-checkbox");
 				HTMLInputElement input = createInput("custom-control-input", "checkbox", "", "check", s);
-				HTMLLabelElement label = createLabel(s, "custom-control-label", "box"+senseN);
-				input.id = "box"+senseN;
+				HTMLLabelElement label = createLabel(s, "custom-control-label", "box" + senseN);
+				input.id = "box" + senseN;
+				input.required = true;
 				$(div).append(input, label);
 				$(this.inputDiv).append(div);
 				senseN++;
 			}
-			String word =  (String) json.$get("word");
+			String word = (String) json.$get("word");
 			this.word.textContent = word + " - " + (String) json.$get("description");
 			this.wordInput.value = word;
 			return null;
@@ -51,7 +53,7 @@ public class SenseAnnotation extends AnnotationBasePage
 
 	public static void main(String[] args)
 	{
-		@SuppressWarnings("unused")
 		SenseAnnotation page = new SenseAnnotation();
+		page.validateCheckboxes();
 	}
 }

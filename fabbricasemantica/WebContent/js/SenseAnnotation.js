@@ -5,9 +5,10 @@ var js;
         constructor() {
             super(SenseAnnotation.TITLE, SenseAnnotation.FORM_ACTION, SenseAnnotation.ANNOTATION_DESCRIPTION);
             this.input.hidden = true;
+            this.input.required = false;
             $.getJSON(js.AnnotationBasePage.REST_URL, "task=SENSE_ANNOTATION", (result, a, ctx) => {
                 let json = result;
-                let senses = null;
+                let senses = ([]);
                 if (json["senses"] != null && (json["senses"] instanceof Array))
                     senses = (json["senses"]);
                 let senseN = 0;
@@ -18,6 +19,7 @@ var js;
                         let input = js.HTMLUtils.createInput("custom-control-input", "checkbox", "", "check", s);
                         let label = js.HTMLUtils.createLabel(s, "custom-control-label", "box" + senseN);
                         input.id = "box" + senseN;
+                        input.required = true;
                         $(div).append(input, label);
                         $(this.inputDiv).append(div);
                         senseN++;
@@ -30,8 +32,19 @@ var js;
             });
             this.attachBtn();
         }
+        validateCheckboxes() {
+            $(".container").on("change", ":checkbox", (x, y) => {
+                let checkboxes = $(":checkbox");
+                if (checkboxes.is(":checked"))
+                    checkboxes.removeAttr("required");
+                else
+                    checkboxes.attr("required", "");
+                return null;
+            });
+        }
         static main(args) {
             let page = new SenseAnnotation();
+            page.validateCheckboxes();
         }
     }
     SenseAnnotation.TITLE = "Sense Annotation";
@@ -39,5 +52,6 @@ var js;
     SenseAnnotation.ANNOTATION_DESCRIPTION = "Data una parola e una frase in cui la parola appare, l\u2019utente deve selezionare il senso appropriato:";
     js.SenseAnnotation = SenseAnnotation;
     SenseAnnotation["__class"] = "js.SenseAnnotation";
+    SenseAnnotation["__interfaces"] = ["js.Checkboxable"];
 })(js || (js = {}));
 js.SenseAnnotation.main(null);

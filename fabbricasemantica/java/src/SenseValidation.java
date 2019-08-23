@@ -22,32 +22,37 @@ public class SenseValidation extends AnnotationBasePage
 	private SenseValidation()
 	{
 		super(TITLE, FORM_ACTION, ANNOTATION_DESCRIPTION);
-		this.input.hidden = true;
+		input.hidden = true;
+		input.required = false;
 		$.getJSON(REST_URL, "task=SENSE_VALIDATION", (Object result, String a, JQueryXHR ctx) ->
 		{
 			JSON json = (JSON) result;
 			String word = json.$get("word");
 			String sense = json.$get("sense");
 			String example = json.$get("example");
-			this.word.textContent = word + " - " + example + " - " + sense;
+			this.word.textContent = word + " - " + example + " : " + sense;
 			this.wordInput.value = word + "," + sense + "," + example;
 			for (String s : Arrays.asList("Sì", "No"))
 			{
 				HTMLDivElement div = createDiv("custom-control custom-radio");
-				HTMLInputElement input = createInput("custom-control-input", "radio", "", "radio", s.equals("Sì") ? "true" : "false");
+				HTMLInputElement input = createInput("custom-control-input", "radio", "", "radio",
+						s.equals("Sì") ? "true" : "false");
 				HTMLLabelElement label = createLabel(s, "custom-control-label", s);
 				input.id = s;
+				input.required = true;
 				$(div).append(input, label);
 				$(inputDiv).append(div);
 			}
 			return null;
 		});
 		attachBtn();
+
 	}
 
 	public static void main(String[] args)
 	{
 		@SuppressWarnings("unused")
 		SenseValidation page = new SenseValidation();
+
 	}
 }

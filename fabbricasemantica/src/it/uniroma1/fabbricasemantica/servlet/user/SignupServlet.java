@@ -2,7 +2,6 @@ package it.uniroma1.fabbricasemantica.servlet.user;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -30,7 +29,6 @@ public class SignupServlet extends BaseServlet
 		String[] langs = request.getParameterValues("check");
 		String[] otherLangs = request.getParameterValues("langs");
 		String[] levels = request.getParameterValues("level");
-		System.out.println(Arrays.toString(otherLangs));
 		// se l'email c'è già o le password non corrispondono -> redirect a signup
 		if (!password.equals(passRepeat))
 			page = "signup.html";

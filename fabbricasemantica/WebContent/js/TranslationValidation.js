@@ -5,6 +5,7 @@ var js;
         constructor() {
             super(TranslationValidation.TITLE, TranslationValidation.FORM_ACTION, TranslationValidation.ANNOTATION_DESCRIPTION);
             this.input.hidden = true;
+            this.input.required = false;
             $.getJSON(js.AnnotationBasePage.REST_URL, "task=TRANSLATION_VALIDATION", (result, a, ctx) => {
                 let json = result;
                 let translations = null;
@@ -18,6 +19,7 @@ var js;
                         let input = js.HTMLUtils.createInput("custom-control-input", "checkbox", "", "check", s);
                         let label = js.HTMLUtils.createLabel(s, "custom-control-label", "box" + translN);
                         input.id = "box" + translN;
+                        input.required = true;
                         $(div).append(input, label);
                         $(this.inputDiv).append(div);
                         translN++;
@@ -27,6 +29,7 @@ var js;
                 let input = js.HTMLUtils.createInput("custom-control-input", "checkbox", "", "check", "Nessuna delle precedenti");
                 let label = js.HTMLUtils.createLabel("Nessuna delle precedenti", "custom-control-label", "box" + translN);
                 input.id = "box" + translN;
+                input.required = true;
                 $(div).append(input, label);
                 $(this.inputDiv).append(div);
                 let word = (json["word"]);
@@ -36,8 +39,19 @@ var js;
             });
             this.attachBtn();
         }
+        validateCheckboxes() {
+            $(".container").on("change", ":checkbox", (x, y) => {
+                let checkboxes = $(":checkbox");
+                if (checkboxes.is(":checked"))
+                    checkboxes.removeAttr("required");
+                else
+                    checkboxes.attr("required", "");
+                return null;
+            });
+        }
         static main(args) {
             let page = new TranslationValidation();
+            page.validateCheckboxes();
         }
     }
     TranslationValidation.TITLE = "Translation Validation";
@@ -45,5 +59,6 @@ var js;
     TranslationValidation.ANNOTATION_DESCRIPTION = "Data una parola e una sua definizione in inglese, l\u2019utente deve scegliere la miglior traduzione tra quelle fornite.";
     js.TranslationValidation = TranslationValidation;
     TranslationValidation["__class"] = "js.TranslationValidation";
+    TranslationValidation["__interfaces"] = ["js.Checkboxable"];
 })(js || (js = {}));
 js.TranslationValidation.main(null);

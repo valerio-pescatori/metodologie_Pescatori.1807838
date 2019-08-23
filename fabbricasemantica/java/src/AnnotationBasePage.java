@@ -6,6 +6,7 @@ import static def.jquery.Globals.$;
 import static js.HTMLUtils.createAnchor;
 import static js.HTMLUtils.createDiv;
 import static js.HTMLUtils.createInput;
+import static js.HTMLUtils.createLabel;
 import static js.HTMLUtils.randomPage;
 
 import def.dom.HTMLAnchorElement;
@@ -72,6 +73,7 @@ public abstract class AnnotationBasePage extends PageWithForm
 	protected AnnotationBasePage(String title, String formAction, String annotationDescription)
 	{
 		super(title, formAction);
+		// modifico la navbar
 		HTMLLIElement logout = document.createElement(StringTypes.li);
 		logout.className = "nav-item";
 		HTMLAnchorElement logoutLink = createAnchor("nav-link", "logout.jsp", "Logout");
@@ -91,23 +93,29 @@ public abstract class AnnotationBasePage extends PageWithForm
 		$(home).append(homeLink);
 		$(logout).append(logoutLink);
 		$(this.navbarNav).append(home, logout, userSpan);
-		this.annotationDescription = document.createElement(StringTypes.label);
-		this.annotationDescription.textContent = annotationDescription;
+		//navbar modificata
+		//descrizione dell'annotazione
+		this.annotationDescription = createLabel(annotationDescription);
 		this.annotationDescription.setAttribute("style", "font-weight:bold");
+		// input nascosto per passare dati al back-end
 		this.wordInput = document.createElement(StringTypes.input);
 		wordInput.hidden = true;
 		wordInput.name = "wordInput";
+		wordInput.id = wordInput.name;
 		wordInput.type = "text";
-		word = document.createElement(StringTypes.label);
-		word.className = "form-control-plaintext";
+		//label per l'input
+		word = createLabel("", "form-control-plaintext", "input");
+		//input (non ha type poiché viene usato da diversi tipi di annotazioni che hanno type diversi
 		input = document.createElement(StringTypes.input);
 		input.name = "input";
 		input.className = "form-control";
-		$(input).attr("required", "");
-		btnRow = createDiv("btn-group");
+		input.required = true;
+		input.id = "input";
+		// creo il div per l'input
 		inputDiv = createDiv("form-group");
 		$(inputDiv).append(this.annotationDescription, word, input, wordInput);
 		// creo i bottoni
+		btnRow = createDiv("btn-group");
 		HTMLInputElement next = createInput("btn btn-primary", "submit", "Next");
 		HTMLAnchorElement skip = createAnchor("btn btn-secondary", randomPage(), "Skip");
 		$(btnRow).append(next, skip);

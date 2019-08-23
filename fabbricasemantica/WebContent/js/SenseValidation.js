@@ -5,12 +5,13 @@ var js;
         constructor() {
             super(SenseValidation.TITLE, SenseValidation.FORM_ACTION, SenseValidation.ANNOTATION_DESCRIPTION);
             this.input.hidden = true;
+            this.input.required = false;
             $.getJSON(js.AnnotationBasePage.REST_URL, "task=SENSE_VALIDATION", (result, a, ctx) => {
                 let json = result;
                 let word = (json["word"]);
                 let sense = (json["sense"]);
                 let example = (json["example"]);
-                this.word.textContent = word + " - " + example + " - " + sense;
+                this.word.textContent = word + " - " + example + " : " + sense;
                 this.wordInput.value = word + "," + sense + "," + example;
                 {
                     let array123 = ["S\u00ec", "No"];
@@ -26,6 +27,7 @@ var js;
                             } })(s, "S\u00ec") ? "true" : "false");
                             let label = js.HTMLUtils.createLabel(s, "custom-control-label", s);
                             input.id = s;
+                            input.required = true;
                             $(div).append(input, label);
                             $(this.inputDiv).append(div);
                         }

@@ -19,7 +19,7 @@ var js;
                 this.btnRow = null;
             $.get("/fabbricasemantica/isLoggedIn.jsp", (result, a, cx) => {
                 if (result !== "false")
-                    window.location.href = "/fabbricasemantica/home.html?welcomeback";
+                    window.location.href = "/fabbricasemantica/home.html";
                 return null;
             });
             let login = document.createElement("li");
@@ -42,12 +42,14 @@ var js;
                 login.className = "nav-item";
                 signup.className = "nav-item  active";
             }
-            let emailLabel = js.HTMLUtils.createLabel("Email:");
+            let emailLabel = js.HTMLUtils.createLabel("Email:", "form-control-plaintext", "email");
             let emailInput = js.HTMLUtils.createInput("form-control", "email", "Inserire l\'email qui...", "email");
-            $(emailInput).attr("required", "");
-            let passwordLabel = js.HTMLUtils.createLabel("Password:");
+            emailInput.required = true;
+            emailInput.id = "email";
+            let passwordLabel = js.HTMLUtils.createLabel("Password:", "form-control-plaintext", "password");
             let passwordInput = js.HTMLUtils.createInput("form-control", "password", "Inserire la password qui...", "password");
-            $(passwordInput).attr("required", "");
+            passwordInput.required = true;
+            passwordInput.id = "password";
             this.inputDiv = js.HTMLUtils.createDiv("form-group");
             $(this.inputDiv).append(emailLabel, emailInput, passwordLabel, passwordInput);
             $(this.form).append(this.inputDiv);
