@@ -9,16 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.uniroma1.fabbricasemantica.servlet.BaseServlet;
-
+/**
+ * Servlet che restituisce una stringa contenete l'username dell'utente loggato o, se non c'è un utente loggato, la stringa "false"
+ * @author Valerio
+ *
+ */
 @WebServlet(name="AuthenticationServiceServlet", urlPatterns="/isLoggedIn.jsp")
 public class AuthenticationServiceServlet extends BaseServlet {
 	private static final long serialVersionUID = 8484501789787L;
 
+	/**
+	 * restituisce una stringa contenete l'username dell'utente loggato o, se non c'è un utente loggato, la stringa "false"
+	 */
 	@Override
 	protected void doSomething(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// L'oggetto writer scrive qualsiasi informazione si voglia restituire al chiamante 
-		// (di solito ci si scrive la pagina html da restituire)
-		// nel nostro caso ci scriviamo "true" o "false" a seconda se l'utente e' loggato o meno.
 		HttpSession session = request.getSession();
 		String username = session.getAttribute("username") != null ? (String)session.getAttribute("username") : "false";
 		response.getWriter().write(username);

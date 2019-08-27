@@ -10,12 +10,30 @@ import def.dom.HTMLDivElement;
 import def.jquery.JQueryXHR;
 import def.js.JSON;
 
+/**
+ * Annotazioni con componenti trascinabili
+ * @author Valerio
+ *
+ */
 public class MyAnnotation extends AnnotationBasePage
 {
+	/**
+	 * titolo
+	 */
 	public static final String TITLE = "My Annotation";
+	/**
+	 * {@code action} del form
+	 */
 	public static final String FORM_ACTION = "myAnnotation.jsp";
+	/**
+	 * descrizione dell'annotazione
+	 */
 	public static final String ANNOTATION_DESCRIPTION = "Trascina ogni parola in italiano verso la corretta traduzione in inglese.";
 
+	/**
+	 * Annotazione con componenti trascinabili: gli elemetni sulla sinistra devono essere trascinati verso la corretta traduzione a destra
+	 * i dati verranno poi passati al back-end e salvati
+	 */
 	@SuppressWarnings("unchecked")
 	private MyAnnotation()
 	{

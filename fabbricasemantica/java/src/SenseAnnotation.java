@@ -13,12 +13,29 @@ import def.dom.HTMLLabelElement;
 import def.jquery.JQueryXHR;
 import def.js.JSON;
 
+/**
+ * Classe che gestisce il front-end dell'annotazione Sense Annotation
+ * @author Valerio
+ *
+ */
 public class SenseAnnotation extends AnnotationBasePage implements Checkboxable
 {
+	/**
+	 * titolo
+	 */
 	public static final String TITLE = "Sense Annotation";
+	/**
+	 * {@code action} del form
+	 */
 	public static final String FORM_ACTION = "senseAnnotation.jsp";
+	/**
+	 * descrizione dell'annotazione
+	 */
 	public static final String ANNOTATION_DESCRIPTION = "Data una parola e una frase in cui la parola appare, l’utente deve selezionare il senso appropriato:";
-
+	
+	/**
+	 * viene creata la pagina e vengono letti i dati attraverso una chiamata alla servlet {@code nextExample.jsp}
+	 */
 	@SuppressWarnings("unchecked")
 	private SenseAnnotation()
 	{

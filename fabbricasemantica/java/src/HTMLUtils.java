@@ -17,17 +17,34 @@ import jsweet.util.StringTypes;
  */
 public class HTMLUtils
 {
-
+	/**
+	 * Metodo per la creazione di {@link HTMLLabelElement}
+	 * @param textContent testo della label
+	 * @return l'oggetto {@link HTMLLabelElement}
+	 */
 	public static HTMLLabelElement createLabel(String textContent)
 	{
 		return createLabel(textContent, "", "");
 	}
 
+	/**
+	 * Metodo per la creazione di {@link HTMLLabelElement}
+	 * @param textContent testo della label
+	 * @param className classe della label
+	 * @return l'oggetto {@link HTMLLabelElement}
+	 */
 	public static HTMLLabelElement createLabel(String textContent, String className)
 	{
 		return createLabel(textContent, className, "");
 	}
 
+	/**
+	 * Metodo per la creazione di {@link HTMLLabelElement}
+	 * @param textContent testo della label
+	 * @param className classe della label
+	 * @param isFor value per l'attributo {@code for} della label
+	 * @return l'oggetto {@link HTMLLabelElement}
+	 */
 	public static HTMLLabelElement createLabel(String textContent, String className, String isFor)
 	{
 		HTMLLabelElement element = document.createElement(StringTypes.label);
@@ -36,7 +53,14 @@ public class HTMLUtils
 		element.setAttribute("for", isFor);
 		return element;
 	}
-
+	
+	/**
+	 * Metodo per la creazione di {@link HTMLAnchorElement}
+	 * @param className classe dell'anchor
+	 * @param href value per l'attributo {@code href}
+	 * @param textContent testo
+	 * @return l'oggetto {@link HTMLAnchorElement}
+	 */
 	public static HTMLAnchorElement createAnchor(String className, String href, String textContent)
 	{
 		HTMLAnchorElement element = document.createElement(StringTypes.a);
@@ -45,17 +69,41 @@ public class HTMLUtils
 		element.textContent = textContent;
 		return element;
 	}
-
+	
+	/**
+	 * Metodo per la creazione di {@link HTMLInputElement}
+	 * @param className classe
+	 * @param type tipo
+	 * @param placeholder placeholder
+	 * @param name name
+	 * @return l'oggetto {@link HTMLInputElement}
+	 */
 	public static HTMLInputElement createInput(String className, String type, String placeholder, String name)
 	{
 		return createInput(className, type, placeholder, name, "");
 	}
 
+	/**
+	 * Metodo per la creazione di {@link HTMLInputElement}
+	 * @param className classe
+	 * @param type tipo
+	 * @param value value
+	 * @return l'oggetto {@link HTMLInputElement}
+	 */
 	public static HTMLInputElement createInput(String className, String type, String value)
 	{
 		return createInput(className, type, "", "", value);
 	}
 
+	/**
+	 * Metodo per la creazione di {@link HTMLInputElement}
+	 * @param className classe
+	 * @param type tipo
+	 * @param placeholder placeholder
+	 * @param name name
+	 * @param value value
+	 * @return l'oggetto {@link HTMLInputElement}
+	 */
 	public static HTMLInputElement createInput(String className, String type, String placeholder, String name,
 			String value)
 	{
@@ -67,7 +115,12 @@ public class HTMLUtils
 		element.placeholder = placeholder;
 		return element;
 	}
-
+	
+	/**
+	 * Metodo per la creazione di {@link HTMLDivElement}
+	 * @param className classe
+	 * @return l'oggetto {@link HTMLDivElement}
+	 */
 	public static HTMLDivElement createDiv(String className)
 	{
 		HTMLDivElement element = document.createElement(StringTypes.div);

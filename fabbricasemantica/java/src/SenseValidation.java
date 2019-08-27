@@ -13,12 +13,29 @@ import def.dom.HTMLLabelElement;
 import def.jquery.JQueryXHR;
 import def.js.JSON;
 
+/**
+ * Classe che gestisce il front-end dell'annotazione Sense Validation
+ * @author Valerio
+ *
+ */
 public class SenseValidation extends AnnotationBasePage
 {
+	/**
+	 * titolo
+	 */
 	public static final String TITLE = "Sense Validation";
+	/**
+	 * {@code action} del form
+	 */
 	public static final String FORM_ACTION = "senseValidation.jsp";
+	/**
+	 * descrizione dell'annotazione
+	 */
 	public static final String ANNOTATION_DESCRIPTION = "Data una parola e una frase in cui appare, l’utente deve verificare se il senso fornito dal sistema è appropriato.";
 
+	/**
+	 * viene creata la pagina e vengono letti i dati attraverso una chiamata alla servlet {@code nextExample.jsp}
+	 */
 	private SenseValidation()
 	{
 		super(TITLE, FORM_ACTION, ANNOTATION_DESCRIPTION);

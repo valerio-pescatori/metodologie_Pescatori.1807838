@@ -13,12 +13,29 @@ import def.dom.HTMLLabelElement;
 import def.jquery.JQueryXHR;
 import def.js.JSON;
 
+/**
+ * Classe che gestisce il front-end dell'annotazione Sense Annotation
+ * @author Valerio
+ *
+ */
 public class TranslationValidation extends AnnotationBasePage implements Checkboxable
 {
+	/**
+	 * titolo
+	 */
 	public static final String TITLE = "Translation Validation";
+	/**
+	 * {@code action} del form
+	 */
 	public static final String FORM_ACTION = "translationValidation.jsp";
+	/**
+	 * descrizione dell'annotazione
+	 */
 	public static final String ANNOTATION_DESCRIPTION = "Data una parola e una sua definizione in inglese, l’utente deve scegliere la miglior traduzione tra quelle fornite.";
 
+	/**
+	 * viene creata la pagina e vengono letti i dati attraverso una chiamata alla servlet {@code nextExample.jsp}
+	 */
 	@SuppressWarnings("unchecked")
 	private TranslationValidation()
 	{
