@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.uniroma1.fabbricasemantica.db.DBHandler;
-import it.uniroma1.fabbricasemantica.servlet.BaseServlet;
+import it.uniroma1.fabbricasemantica.servlet.AnnotationServlet;
 
 @WebServlet(name = "TaskMyAnnotationServlet", urlPatterns = "/myAnnotation.jsp")
-public class TaskMyAnnotationServlet extends BaseServlet
+public class TaskMyAnnotationServlet extends AnnotationServlet
 {
 	private static final long serialVersionUID = 1L;
 
@@ -19,6 +19,7 @@ public class TaskMyAnnotationServlet extends BaseServlet
 	protected void doSomething(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
+		String username = (String) request.getSession().getAttribute("username");
 		String[] translations = request.getParameter("wordInput").split(",");
 		for (int i = 1; i < translations.length; i += 2)
 		{

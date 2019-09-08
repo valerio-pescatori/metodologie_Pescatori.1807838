@@ -27,15 +27,19 @@ public class LoginServlet extends BaseServlet
 		String password = request.getParameter("password");
 		Map<String, ArrayList<String>> qMap = DBHandler.selectQuery("user", "email", "password");
 		int emailIndex = qMap.get("email").indexOf(email);
-		int passwordIndex = qMap.get("password").indexOf(password);
-		if (emailIndex == passwordIndex && emailIndex != -1)
+		if (emailIndex != -1)
 		{
-			// loggo l'utente e lo redirecto a home.html
-			session.setAttribute("username", email);
-			page = "home.html";
-		} else
+			if (qMap.get("password").get(emailIndex).equals(password))
+			{
+				// loggo l'utente e lo redirecto a home.html
+				session.setAttribute("username", email);
+				page = "home.html";
+			}
+			else 
+				page = "login.html";
+		}
+		else
 			page = "login.html";
-
 		response.sendRedirect(page);
 	}
 

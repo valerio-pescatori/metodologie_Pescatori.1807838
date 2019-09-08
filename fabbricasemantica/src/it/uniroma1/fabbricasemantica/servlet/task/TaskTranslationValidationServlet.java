@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.uniroma1.fabbricasemantica.db.DBHandler;
-import it.uniroma1.fabbricasemantica.servlet.BaseServlet;
+import it.uniroma1.fabbricasemantica.servlet.AnnotationServlet;
 
 @WebServlet(name = "TaskTranslationValidationServlet", urlPatterns = "/translationValidation.jsp")
-public class TaskTranslationValidationServlet extends BaseServlet
+public class TaskTranslationValidationServlet extends AnnotationServlet
 {
 	private static final long serialVersionUID = 1L;
 
@@ -22,6 +22,7 @@ public class TaskTranslationValidationServlet extends BaseServlet
 	{
 		String[] box = request.getParameterValues("check");
 		String word = request.getParameter("wordInput");
+		String username = (String) request.getSession().getAttribute("username");
 		DBHandler.insertQuery("translationValidation", word, Arrays.toString(box), username);
 		response.sendRedirect(randomPage());
 	}

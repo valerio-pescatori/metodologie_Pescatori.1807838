@@ -1,6 +1,12 @@
 /* Generated from Java with JSweet 2.3.0-SNAPSHOT - http://www.jsweet.org */
 var js;
 (function (js) {
+    /**
+     * Annotazioni con componenti trascinabili
+     * @author Valerio
+     * @extends js.AnnotationBasePage
+     * @class
+     */
     class MyAnnotation extends js.AnnotationBasePage {
         constructor() {
             super(MyAnnotation.TITLE, MyAnnotation.FORM_ACTION, MyAnnotation.ANNOTATION_DESCRIPTION);
@@ -8,8 +14,8 @@ var js;
             this.word.hidden = true;
             $.getJSON(js.AnnotationBasePage.REST_URL, "task=MY_ANNOTATION", (result, a, ctx) => {
                 let json = result;
-                let translations = null;
-                let words = null;
+                let translations = ([]);
+                let words = ([]);
                 if ((json["translations"] != null && (json["translations"] instanceof Array)) && (json["words"] != null && (json["words"] instanceof Array))) {
                     words = (json["words"]);
                     translations = (json["translations"]);
@@ -58,8 +64,17 @@ var js;
             let page = new MyAnnotation();
         }
     }
+    /**
+     * titolo
+     */
     MyAnnotation.TITLE = "My Annotation";
+    /**
+     * {@code action} del form
+     */
     MyAnnotation.FORM_ACTION = "myAnnotation.jsp";
+    /**
+     * descrizione dell'annotazione
+     */
     MyAnnotation.ANNOTATION_DESCRIPTION = "Trascina ogni parola in italiano verso la corretta traduzione in inglese.";
     js.MyAnnotation = MyAnnotation;
     MyAnnotation["__class"] = "js.MyAnnotation";

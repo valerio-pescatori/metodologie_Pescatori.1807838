@@ -1,6 +1,12 @@
 /* Generated from Java with JSweet 2.3.0-SNAPSHOT - http://www.jsweet.org */
 var js;
 (function (js) {
+    /**
+     * Classe che gestisce il front-end dell'annotazione Sense Annotation
+     * @author Valerio
+     * @extends js.AnnotationBasePage
+     * @class
+     */
     class TranslationValidation extends js.AnnotationBasePage {
         constructor() {
             super(TranslationValidation.TITLE, TranslationValidation.FORM_ACTION, TranslationValidation.ANNOTATION_DESCRIPTION);
@@ -8,7 +14,7 @@ var js;
             this.input.required = false;
             $.getJSON(js.AnnotationBasePage.REST_URL, "task=TRANSLATION_VALIDATION", (result, a, ctx) => {
                 let json = result;
-                let translations = null;
+                let translations = ([]);
                 if (json["translations"] != null && (json["translations"] instanceof Array))
                     translations = (json["translations"]);
                 let translN = 0;
@@ -54,8 +60,17 @@ var js;
             page.validateCheckboxes();
         }
     }
+    /**
+     * titolo
+     */
     TranslationValidation.TITLE = "Translation Validation";
+    /**
+     * {@code action} del form
+     */
     TranslationValidation.FORM_ACTION = "translationValidation.jsp";
+    /**
+     * descrizione dell'annotazione
+     */
     TranslationValidation.ANNOTATION_DESCRIPTION = "Data una parola e una sua definizione in inglese, l\u2019utente deve scegliere la miglior traduzione tra quelle fornite.";
     js.TranslationValidation = TranslationValidation;
     TranslationValidation["__class"] = "js.TranslationValidation";

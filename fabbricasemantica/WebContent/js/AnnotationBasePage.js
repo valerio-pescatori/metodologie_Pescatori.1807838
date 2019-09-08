@@ -3,7 +3,6 @@ var js;
 (function (js) {
     /**
      * Classe che funge da base per tutte le pagine di annotazione
-     *
      * @author Valerio
      * @extends js.PageWithForm
      * @class

@@ -1,6 +1,12 @@
 /* Generated from Java with JSweet 2.3.0-SNAPSHOT - http://www.jsweet.org */
 var js;
 (function (js) {
+    /**
+     * Classe che gestisce il front-end dell'annotazione Sense Annotation
+     * @author Valerio
+     * @extends js.AnnotationBasePage
+     * @class
+     */
     class SenseAnnotation extends js.AnnotationBasePage {
         constructor() {
             super(SenseAnnotation.TITLE, SenseAnnotation.FORM_ACTION, SenseAnnotation.ANNOTATION_DESCRIPTION);
@@ -47,8 +53,17 @@ var js;
             page.validateCheckboxes();
         }
     }
+    /**
+     * titolo
+     */
     SenseAnnotation.TITLE = "Sense Annotation";
+    /**
+     * {@code action} del form
+     */
     SenseAnnotation.FORM_ACTION = "senseAnnotation.jsp";
+    /**
+     * descrizione dell'annotazione
+     */
     SenseAnnotation.ANNOTATION_DESCRIPTION = "Data una parola e una frase in cui la parola appare, l\u2019utente deve selezionare il senso appropriato:";
     js.SenseAnnotation = SenseAnnotation;
     SenseAnnotation["__class"] = "js.SenseAnnotation";

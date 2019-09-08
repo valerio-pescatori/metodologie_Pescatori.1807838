@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import it.uniroma1.fabbricasemantica.servlet.BaseServlet;
 /**
@@ -23,9 +22,7 @@ public class AuthenticationServiceServlet extends BaseServlet {
 	 */
 	@Override
 	protected void doSomething(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String username = session.getAttribute("username") != null ? (String)session.getAttribute("username") : "false";
-		response.getWriter().write(username);
+		response.getWriter().write( request.getSession().getAttribute("username") == null ? "false": (String) request.getSession().getAttribute("username"));
 	}
 
 }

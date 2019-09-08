@@ -20,22 +20,14 @@ public abstract class BaseServlet extends HttpServlet
 	 * Stringa nella quale è possibile salvare l'url della pagina alla quale eseguire il redirect per eseguirlo in un secondo momento
 	 */
 	protected String page;
-	/**
-	 * username dell'utente loggato
-	 */
-	protected String username;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		this.username = (String) request.getSession().getAttribute("username");
-		if (username == null) response.sendRedirect("login.html");
 		doSomething(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		this.username = (String) request.getSession().getAttribute("username");
-		if (username == null) response.sendRedirect("login.html");
 		doSomething(request, response);
 	}
 

@@ -43,7 +43,7 @@ var js;
             $("body").append(navbar, jumbo, this.container);
             window.addEventListener("load", (x) => {
                 this.form.addEventListener("submit", (y) => {
-                    if (!this.form.checkValidity()) {
+                    if (!this.form.checkValidity() && this.constructor !== js.MyAnnotation) {
                         y.preventDefault();
                         y.stopPropagation();
                     }
