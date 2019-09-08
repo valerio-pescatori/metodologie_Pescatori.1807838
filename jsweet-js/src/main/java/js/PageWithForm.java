@@ -73,11 +73,11 @@ public abstract class PageWithForm
 		$(container).append(form);
 		$("body").append(navbar, jumbo, container);
 		//event listener per evitare il submit con campi non validi
-		window.addEventListener("load", (x) ->
+		window.addEventListener("load", x ->
 		{
-			form.addEventListener("submit", (y) ->
+			form.addEventListener("submit", y ->
 			{
-				if (!form.checkValidity())
+				if (!form.checkValidity() && this.getClass() != MyAnnotation.class)
 				{
 					y.preventDefault();
 					y.stopPropagation();

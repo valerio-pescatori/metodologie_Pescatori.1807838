@@ -95,6 +95,6 @@ public class MyAnnotation extends AnnotationBasePage
 	public static void main(String[] args)
 	{
 		@SuppressWarnings("unused")
-		MyAnnotation page = new MyAnnotation();
+		MyAnnotation page = new MyAnnotation();;
 	}
 }
