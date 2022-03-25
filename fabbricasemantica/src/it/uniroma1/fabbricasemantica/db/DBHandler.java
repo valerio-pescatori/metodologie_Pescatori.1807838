@@ -25,7 +25,7 @@ public class DBHandler
 	/**
 	 * URL del database
 	 */
-	private static final String URL = "jdbc:sqlite:fabbricasemantica.db";
+	private static final String URL = "jdbc:sqlite:metodologie_Pescatori.1807838/fabbricasemantica/fabbricasemantica.db";
 
 	/**
 	 * Restituisce un oggetto {@link Connection} dal quale si possono eseguire varie
