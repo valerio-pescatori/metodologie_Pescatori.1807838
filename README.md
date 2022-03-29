@@ -18,4 +18,4 @@ Server runs on Apache Tomcat.
 8. Select **Tomcat v9.0 Server**
 9. Add **fabbricasemantica**
 10. Start the server (Ctrl+Alt+R)
-11. Visit localhost:8080/fabbricasemantica/ to access web pages
+11. Visit >localhost:8080/fabbricasemantica/ to access web pages
