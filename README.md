@@ -9,13 +9,13 @@ Server runs on Apache Tomcat.
 - Eclipse IDE + [Eclipse Web Developer Tools](https://marketplace.eclipse.org/content/eclipse-web-developer-tools-0) (v 3.25)
 
 **Steps:**
-1. Clone repository on desktop ```git clone https://github.com/valerio-pescatori/metodologie_Pescatori.1807838```
-2. Import project into Eclipse IDe (both "fabbricasemantica" and "Servers" folders)
-3. Window --> Preferences --> Server --> Runtime Environments --> Add...
-4. Select **Apache Tomcat v9.0**
-5. **Window--> Show View --> Servers** to activate Servers tab
-6. Right click in "Servers" tab then --> New --> Server
-7. Select **Tomcat v9.0 Server**
-8. Add **fabbricasemantica**
-9. Start the server (Ctrl+Alt+R)
-10. Visit localhost:8080/fabbricasemantica/ to access web pages
+1. Clone repository on desktop `git clone https://github.com/valerio-pescatori/metodologie_Pescatori.1807838`
+3. Import project into Eclipse IDe (both "fabbricasemantica" and "Servers" folders)
+4. Window --> Preferences --> Server --> Runtime Environments --> Add...
+5. Select **Apache Tomcat v9.0**
+6. **Window--> Show View --> Servers** to activate Servers tab
+7. Right click in "Servers" tab then --> New --> Server
+8. Select **Tomcat v9.0 Server**
+9. Add **fabbricasemantica**
+10. Start the server (Ctrl+Alt+R)
+11. Visit localhost:8080/fabbricasemantica/ to access web pages
