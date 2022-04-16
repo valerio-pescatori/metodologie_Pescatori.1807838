@@ -10,7 +10,7 @@ Server runs on Apache Tomcat.
 
 **Steps:**
 1. Clone repository on desktop `git clone https://github.com/valerio-pescatori/metodologie_Pescatori.1807838`
-3. Import project into Eclipse IDe (both "fabbricasemantica" and "Servers" folders)
+3. Import project into Eclipse IDE (both "fabbricasemantica" and "Servers" folders)
 4. Window --> Preferences --> Server --> Runtime Environments --> Add...
 5. Select **Apache Tomcat v9.0**
 6. **Window--> Show View --> Servers** to activate Servers tab
