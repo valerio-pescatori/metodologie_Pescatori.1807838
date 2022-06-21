@@ -1,6 +1,6 @@
 # Final project for "Metodologie di Programmazione" course a.a. 2018/19
 
-Small web server in which Javascript code is transpiled from Java using [JSweet](https://github.com/cincheo/jsweet).
+Small web server that uses [JSweet](https://github.com/cincheo/jsweet) to transpile Java code to Javascript.
 Server runs on Apache Tomcat.
 
 ## Quickstart
